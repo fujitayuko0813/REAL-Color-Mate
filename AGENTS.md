@@ -1,10 +1,11 @@
 # REAL Color Mate - AI Development Guide
-Version: 1.0
-Last Updated: 2026-07-29
+
+Version: 2.0  
+Last Updated: 2026-08-04
 
 ---
 
-# Purpose
+## Purpose
 
 REAL Color Mate is an open hardware project that assists automotive paint color matching by measuring spectral information and providing practical color analysis.
 
@@ -16,26 +17,25 @@ Every contribution should move the project toward a manufacturable product.
 
 ---
 
-# Single Source of Truth
+## Single Source of Truth
 
-The following files define the project.
+**MASTER_SPECIFICATION.md is the Single Source of Truth.**
 
-1. Master_Specification.md
-   Official project specification.
+All official project specifications, hardware configuration, software stack, optical specifications, and component verification rules are defined in:
 
-2. CHANGELOG.md
-   Official history of all design changes.
+> [MASTER_SPECIFICATION.md](./MASTER_SPECIFICATION.md)
 
-3. Development_Log.md
-   Development notes and implementation history.
+AI assistants must always read these files in order before making design decisions:
 
-AI assistants must always read these files before making design decisions.
+1. **MASTER_SPECIFICATION.md** - Official project specifications
+2. **CHANGELOG.md** - Official history of all design changes
+3. **Related design documents** - Context and implementation details
 
 Do not modify the project specification without explicit user approval.
 
 ---
 
-# Core Principles
+## Core Principles
 
 Always prioritize:
 
@@ -50,41 +50,44 @@ Never prioritize unnecessary complexity over usability.
 
 ---
 
-# Development Rules
+## Development Rules
 
-Always
+### Always
 
-- Read Master_Specification.md before starting work.
-- Read CHANGELOG.md before implementing changes.
-- Produce actual deliverables whenever possible.
-- Include version numbers.
-- Keep documentation synchronized.
-- Explain assumptions.
-- Clearly distinguish verified information from assumptions.
-- Mark temporary designs as "Concept Design".
-- Keep all project files internally consistent.
+- Read **MASTER_SPECIFICATION.md** before starting work
+- Read **CHANGELOG.md** before implementing changes
+- Produce actual deliverables whenever possible
+- Include version numbers
+- Keep documentation synchronized
+- Explain assumptions
+- Clearly distinguish verified information from assumptions
+- Mark temporary designs as "Concept Design"
+- Keep all project files internally consistent
 
-Never
+### Never
 
-- Guess specifications.
-- Invent dimensions.
-- Invent electrical characteristics.
-- Invent calibration values.
-- Invent component performance.
-- Change project architecture without approval.
-- Replace existing work without explanation.
-- Remove existing functionality without approval.
-- Use obsolete or unavailable components when practical alternatives exist.
+- Guess specifications
+- Invent dimensions
+- Invent electrical characteristics
+- Invent calibration values
+- Invent component performance
+- Change project architecture without approval
+- Replace existing work without explanation
+- Remove existing functionality without approval
+- Use obsolete or unavailable components when practical alternatives exist
 
-If information is unavailable, explicitly state:
+### If Information is Unavailable
 
-Unknown
+Explicitly state: **Unknown**
 
-instead of guessing.
+- Explain why
+- Suggest how to verify it
+
+Never fabricate technical information.
 
 ---
 
-# Design Philosophy
+## Design Philosophy
 
 The project should be manufacturable using commonly available tools and services.
 
@@ -99,15 +102,15 @@ Every design should be realistically manufacturable.
 
 ---
 
-# Concept vs Production
+## Design Stages
 
-Concept Design
+### Concept Design
 
 - Estimated dimensions allowed
 - Placeholder models allowed
 - Experimental ideas allowed
 
-Production Design
+### Production Design
 
 - Measured dimensions only
 - Verified components only
@@ -118,144 +121,54 @@ Never confuse these two stages.
 
 ---
 
-# Hardware Platform
+## Hardware and Software Specifications
 
-MCU
+For complete hardware and software specifications, see:
 
-ESP32-WROOM-32
+> [MASTER_SPECIFICATION.md - Hardware Specification](./MASTER_SPECIFICATION.md#hardware-specification)
+> 
+> [MASTER_SPECIFICATION.md - Software Stack](./MASTER_SPECIFICATION.md#software-stack)
 
-Color Sensor
-
-Adafruit AS7341
-
-LED
-
-Cree XP-G4
-
-LED Driver
-
-STMicroelectronics ALED8102
-
-Power
-
-5V
-
-Storage
-
-microSD
+Key components are documented in the official specification.
 
 ---
 
-# Software Stack
+## Repository Structure
 
-Arduino IDE
+For the official repository structure, see:
 
-ESP32 Arduino Framework
-
-KiCad
-
-OpenSCAD
-
-CSV
-
-Git
-
-GitHub
+> [MASTER_SPECIFICATION.md - Repository Structure](./MASTER_SPECIFICATION.md#repository-structure)
 
 ---
 
-# Optical System
+## File Responsibilities
 
-45° illumination
-
-0° observation
-
-LED ring illumination
-
-Matte black optical chamber
-
-Replaceable measurement hood
-
-Support both
-
-- Vehicle measurement
-- Test panel measurement
+| File | Purpose |
+|------|---------|
+| MASTER_SPECIFICATION.md | Official specifications (authority) |
+| CHANGELOG.md | All approved changes and version history |
+| docs/ | Design documents, calculations, research |
+| hardware/ | KiCad schematics, PCB layouts |
+| software/ | ESP32 firmware source code |
+| mechanical/ | OpenSCAD, STEP, STL models |
+| calibration/ | Calibration data and procedures |
+| manufacturing/ | Manufacturing instructions |
+| tools/ | Development utilities |
+| BOM.md | Parts list and procurement |
 
 ---
 
-# Repository Structure
-
-Hardware/
-
-Firmware/
-
-Mechanical/
-
-BOM/
-
-Documents/
-
-Images/
-
-TestData/
-
-Calibration/
-
----
-
-# File Responsibilities
-
-Master_Specification.md
-
-Official specifications
-
-CHANGELOG.md
-
-All approved changes
-
-Development_Log.md
-
-Daily work log
-
-BOM/
-
-Parts list
-
-Hardware/
-
-KiCad
-Schematics
-PCB
-
-Firmware/
-
-ESP32 source code
-
-Mechanical/
-
-OpenSCAD
-STEP
-STL
-
-Documents/
-
-Design documents
-Calculations
-Research
-
----
-
-# AI Collaboration
+## AI Collaboration
 
 This repository is intended for collaborative development using multiple AI assistants.
 
-Examples include
+Examples include:
 
 - ChatGPT
 - Google Gemini
 - GitHub Copilot
 
-Every AI assistant must follow the same specification.
+Every AI assistant must follow the same specification (MASTER_SPECIFICATION.md).
 
 No AI has authority to redefine project requirements.
 
@@ -263,68 +176,43 @@ Suggestions should be presented as proposals, not decisions.
 
 ---
 
-# AI Responsibilities
+## AI Responsibilities
 
-ChatGPT
+| Assistant | Responsibility |
+|-----------|-----------------|
+| **ChatGPT** | Architecture, Documentation, OpenSCAD, Firmware Design, Project Management |
+| **Google Gemini** | Mathematics, Color Science, Algorithm Review, Data Analysis |
+| **GitHub Copilot** | Implementation, Code Completion, Refactoring, Unit Tests, Code Review |
 
-- Architecture
-- Documentation
-- OpenSCAD
-- Firmware Design
-- Project Management
-
-Gemini
-
-- Mathematics
-- Color Science
-- Algorithm Review
-- Data Analysis
-
-GitHub Copilot
-
-- Implementation
-- Refactoring
-- Code Completion
-- Unit Tests
-
-All assistants must respect previous work.
+All assistants must respect previous work and maintain consistency.
 
 ---
 
-# Workflow
+## Workflow
 
-1. Read Master_Specification.md
-
-2. Read CHANGELOG.md
-
+1. Read **MASTER_SPECIFICATION.md**
+2. Read **CHANGELOG.md**
 3. Review related files
-
 4. Implement requested task
-
 5. Update documentation
-
-6. Update CHANGELOG.md
-
+6. Update **CHANGELOG.md**
 7. Produce deliverables
 
 ---
 
-# Deliverables
+## Deliverables
 
-Whenever applicable, produce actual files.
+Whenever applicable, produce actual files:
 
-Examples
-
-- Arduino Source
+- Arduino Source Code
 - ESP32 Firmware
 - KiCad Project
-- PCB
-- Gerber
-- BOM
-- OpenSCAD
-- STL
-- STEP
-- CSV
+- PCB Gerber Files
+- Bill of Materials (BOM)
+- OpenSCAD Models
+- STL Files
+- STEP Files
+- CSV Data Files
 - Calibration Files
 - Documentation
 - Diagrams
@@ -333,23 +221,23 @@ Avoid delivering explanation only.
 
 ---
 
-# Versioning
+## Versioning
 
-Every deliverable should include a version number.
+Every deliverable should include a version number:
 
-Examples
+- **v0.1** - Concept Design
+- **v0.5** - Prototype
+- **v1.0** - Production Release
 
-v0.1 Concept
+For complete versioning standards, see:
 
-v0.5 Prototype
-
-v1.0 Production
+> [MASTER_SPECIFICATION.md - Versioning Standard](./MASTER_SPECIFICATION.md#versioning-standard)
 
 ---
 
-# Documentation Standard
+## Documentation Standard
 
-Documentation should be
+Documentation should be:
 
 - Clear
 - Reproducible
@@ -360,39 +248,35 @@ Avoid unnecessary verbosity.
 
 ---
 
-# Error Handling
+## Error Handling
 
 If information cannot be verified:
 
-- State that it is Unknown.
-- Explain why.
-- Suggest how to verify it.
+- State that it is **Unknown**
+- Explain why
+- Suggest how to verify it
 
 Never fabricate technical information.
 
 ---
 
-# Quality Checklist
+## Quality Checklist
 
 Before completing any task, verify:
 
-□ Specifications followed
-
-□ No guessed values
-
-□ Files remain consistent
-
-□ Documentation updated
-
-□ Version updated
-
-□ CHANGELOG updated
-
-□ Manufacturable output
+- □ MASTER_SPECIFICATION.md read and understood
+- □ Specifications followed
+- □ No guessed values
+- □ Files remain consistent
+- □ Documentation updated
+- □ Version updated
+- □ CHANGELOG updated
+- □ Manufacturable output
+- □ Deliverables are actual files
 
 ---
 
-# Final Objective
+## Final Objective
 
 The final objective is to create a practical, portable automotive paint measurement system that can be reproduced by third parties using the published manufacturing data.
 
