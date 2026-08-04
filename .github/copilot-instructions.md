@@ -1,6 +1,6 @@
 # GitHub Copilot Instructions
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Last Updated:** 2026-08-04
 
 ---
@@ -18,18 +18,21 @@ All Copilot work must follow these instructions **before starting any task**.
 **BEFORE STARTING ANY WORK, READ IN THIS ORDER:**
 
 1. **[MASTER_SPECIFICATION.md](../../MASTER_SPECIFICATION.md)**
+   - **MASTER_SPECIFICATION.md is the Single Source of Truth**
    - Official project specifications
    - Hardware and software stack details
    - Design stages and versioning rules
+   - Component verification rules
 
-2. **[AGENTS.md](../../AGENTS.md)**
+2. **[CHANGELOG.md](../../CHANGELOG.md)**
+   - History of approved changes
+   - Previous decisions and their context
+
+3. **[AGENTS.md](../../AGENTS.md)**
+   - AI development guide
    - Development rules and principles
    - AI collaboration guidelines
    - Workflow procedures
-
-3. **[CHANGELOG.md](../../CHANGELOG.md)**
-   - History of approved changes
-   - Previous decisions and their context
 
 4. **Related documentation** (if applicable)
    - Design documents in `docs/`
@@ -89,9 +92,9 @@ GitHub Copilot is responsible for:
 
 Before completing ANY task, verify:
 
-- [ ] Read MASTER_SPECIFICATION.md
-- [ ] Read AGENTS.md
+- [ ] Read MASTER_SPECIFICATION.md (Single Source of Truth)
 - [ ] Read CHANGELOG.md
+- [ ] Read AGENTS.md
 - [ ] Related files reviewed (if applicable)
 - [ ] No guessed specifications
 - [ ] No invented values
@@ -99,13 +102,14 @@ Before completing ANY task, verify:
 - [ ] Files remain consistent
 - [ ] Documentation updated
 - [ ] Version numbers included
+- [ ] CHANGELOG.md updated
 - [ ] Deliverables are actual files (not explanations only)
 
 ---
 
 ## 🔄 Workflow for Tasks
 
-1. **Read** the required documentation files (above)
+1. **Read** the required documentation files (in order above)
 2. **Review** related project files
 3. **Implement** the requested task
 4. **Test** the implementation (if applicable)
@@ -117,6 +121,12 @@ Before completing ANY task, verify:
 ---
 
 ## 📁 Repository Structure Reference
+
+For the official repository structure, see:
+
+> [MASTER_SPECIFICATION.md - Repository Structure](../../MASTER_SPECIFICATION.md#repository-structure)
+
+Quick reference:
 
 ```
 REAL-Color-Mate/
@@ -130,8 +140,8 @@ REAL-Color-Mate/
 ├── manufacturing/                  # Manufacturing instructions
 ├── tools/                          # Development utilities
 ├── BOM.md                         # Bill of materials
-├── MASTER_SPECIFICATION.md        # 🔴 Official specs (read-only authority)
-├── AGENTS.md                      # AI collaboration rules
+├── MASTER_SPECIFICATION.md        # 🔴 Official specs (Single Source of Truth)
+├── AGENTS.md                      # AI development guide
 ├── CHANGELOG.md                   # Version history
 ├── IDEA.md                        # Future ideas and candidates
 ├── ROADMAP.md                     # Development roadmap
@@ -142,6 +152,12 @@ REAL-Color-Mate/
 ---
 
 ## 🛠️ Hardware Platform (Reference)
+
+For complete hardware specifications, see:
+
+> [MASTER_SPECIFICATION.md - Hardware Specification](../../MASTER_SPECIFICATION.md#hardware-specification)
+
+Quick reference:
 
 | Component | Value | Status |
 |-----------|-------|--------|
@@ -156,6 +172,12 @@ REAL-Color-Mate/
 
 ## 💻 Software Stack (Reference)
 
+For complete software specifications, see:
+
+> [MASTER_SPECIFICATION.md - Software Stack](../../MASTER_SPECIFICATION.md#software-stack)
+
+Quick reference:
+
 | Component | Tool | Status |
 |-----------|------|--------|
 | IDE | Arduino IDE | Decided |
@@ -168,6 +190,10 @@ REAL-Color-Mate/
 ---
 
 ## 🎓 Design Stages
+
+For complete design stage definitions, see:
+
+> [MASTER_SPECIFICATION.md - Design Stages](../../MASTER_SPECIFICATION.md#design-stages)
 
 ### Concept Design
 - Estimated dimensions allowed
@@ -188,6 +214,12 @@ REAL-Color-Mate/
 
 ## 📊 Versioning Standard
 
+For complete versioning standards, see:
+
+> [MASTER_SPECIFICATION.md - Versioning Standard](../../MASTER_SPECIFICATION.md#versioning-standard)
+
+Quick reference:
+
 | Version | Stage | Use Case |
 |---------|-------|----------|
 | v0.1 | Concept | Initial prototype concept |
@@ -204,12 +236,12 @@ This project uses multiple AI assistants for different specialties:
 
 | Assistant | Responsibility |
 |-----------|-----------------|
-| **GitHub Copilot** (You) | Implementation, Code Completion, Refactoring, Unit Tests |
+| **GitHub Copilot** (You) | Implementation, Code Completion, Refactoring, Unit Tests, Code Review |
 | **ChatGPT** | Architecture, Documentation, OpenSCAD, Firmware Design, Project Management |
 | **Google Gemini** | Mathematics, Color Science, Algorithm Review, Data Analysis |
 
 **All assistants must:**
-- Read the same specifications
+- Read MASTER_SPECIFICATION.md first
 - Respect previous work
 - Maintain consistency
 - Follow the same rules
@@ -240,7 +272,8 @@ Suggest: Run calibration procedure with standard color references and record res
 
 **Your work is complete ONLY when ALL of these are true:**
 
-- ✅ MASTER_SPECIFICATION.md read and understood
+- ✅ MASTER_SPECIFICATION.md read and understood (Single Source of Truth)
+- ✅ CHANGELOG.md read
 - ✅ Specifications followed exactly
 - ✅ No guessed or invented values
 - ✅ All files remain internally consistent
@@ -248,7 +281,7 @@ Suggest: Run calibration procedure with standard color references and record res
 - ✅ Version numbers included
 - ✅ CHANGELOG.md updated
 - ✅ Deliverables are actual files (code, configs, CAD files, etc.)
-- ✅ Output is manufacturing-ready (or marked as Concept Design)
+- ✅ Output is manufacturing-ready (or clearly marked as Concept Design)
 
 ---
 
@@ -264,5 +297,5 @@ If instructions are unclear or conflicting:
 ---
 
 **Last Updated:** 2026-08-04  
-**Maintained by:** GitHub Copilot Integration  
-**Authority:** MASTER_SPECIFICATION.md
+**Authority:** MASTER_SPECIFICATION.md  
+**Reading Order:** MASTER_SPECIFICATION.md → CHANGELOG.md → AGENTS.md
