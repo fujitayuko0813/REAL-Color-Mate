@@ -1,6 +1,6 @@
 # REAL Color Mate - Master Specification v2.0
 
-**Last Updated:** 2026-08-03  
+**Last Updated:** 2026-08-04  
 **Status:** Active Development  
 **Version:** v2.0
 
@@ -26,6 +26,7 @@ This is the **single source of truth** for REAL Color Mate project specification
 **Design Philosophy:** Practical, manufacturable, maintainable
 
 ### Core Objective
+
 Create a portable, reproducible automotive paint measurement system using commonly available manufacturing services (JLCPCB, PCBWay, commercial 3D printing).
 
 ---
@@ -58,7 +59,10 @@ Create a portable, reproducible automotive paint measurement system using common
 - **Function:** Data logging
 - **Status:** Decided
 
-### Optical System
+---
+
+## Optical Specification
+
 - **Illumination Angle:** 45°
 - **Observation Angle:** 0°
 - **Chamber:** Matte black optical chamber
@@ -95,7 +99,7 @@ REAL-Color-Mate/
 ├── manufacturing/     # Manufacturing instructions
 ├── tools/             # Development tools
 ├── BOM.md             # Bill of materials
-├── MASTER_SPECIFICATION.md    # This file
+├── MASTER_SPECIFICATION.md    # This file (official specifications)
 ├── README.md          # Project overview
 ├── ROADMAP.md         # Development roadmap
 ├── IDEA.md            # Future ideas
@@ -134,29 +138,6 @@ If information is unavailable: **Unknown**
 
 ---
 
-## Compliance and Quality
-
-### Development Rules - Always
-- Read MASTER_SPECIFICATION.md before starting work
-- Read CHANGELOG.md before implementing changes
-- Produce actual deliverables whenever possible
-- Include version numbers in all outputs
-- Keep documentation synchronized
-- Clearly distinguish verified facts from assumptions
-- Mark temporary designs as "Concept Design"
-- Keep all project files internally consistent
-
-### Development Rules - Never
-- Guess specifications
-- Invent dimensions, electrical characteristics, or calibration values
-- Invent component performance
-- Change project architecture without approval
-- Replace existing work without explanation
-- Remove existing functionality without approval
-- Use obsolete or unavailable components when practical alternatives exist
-
----
-
 ## Versioning Standard
 
 | Version | Stage | Description |
@@ -167,64 +148,39 @@ If information is unavailable: **Unknown**
 
 ---
 
-## File Responsibilities
+## Current Hardware / Software Configuration
 
-| File | Purpose | Owner |
-|------|---------|-------|
-| MASTER_SPECIFICATION.md | Official specifications (DECIDED FACTS ONLY) | Project Lead |
-| README.md | Project overview and quick start | Project Lead |
-| ROADMAP.md | Development timeline and planned features | Project Team |
-| IDEA.md | Future ideas and candidates | Project Team |
-| CHANGELOG.md | All approved changes and versions | Project Lead |
-| AGENTS.md | AI collaboration rules and guidelines | Project Lead |
-| .github/copilot-instructions.md | AI behavior rules (sync with AGENTS.md) | Project Lead |
-| BOM.md | Bill of materials with part numbers | Hardware Team |
-| hardware/ | KiCad schematics and PCB | Hardware Team |
-| software/ | ESP32 firmware source code | Software Team |
-| mechanical/ | OpenSCAD, STEP, STL files | Mechanical Team |
-| calibration/ | Calibration procedures and data | Test Team |
-| manufacturing/ | Manufacturing and assembly instructions | Manufacturing Team |
-| docs/ | Design documents and calculations | Documentation Team |
-
----
-
-## Current Status
-
-- **Hardware Design:** Concept stage (v0.1)
-- **Firmware:** Not yet started
-- **Mechanical Design:** Not yet started
-- **Calibration:** Not yet started
-- **Manufacturing:** Not yet started
-
----
-
-## Known Constraints
-
-Unknown - To be determined in ROADMAP.md
+- **ESP32 MCU:** ESP32-WROOM-32
+- **Color Sensor:** Adafruit AS7341
+- **LED Driver:** STMicroelectronics ALED8102
+- **Power Supply:** 5V
+- **Storage:** microSD Card
+- **IDE:** Arduino IDE
+- **Framework:** ESP32 Arduino Framework
+- **PCB Design Tool:** KiCad
+- **3D Design Tool:** OpenSCAD
+- **Data Format:** CSV
 
 ---
 
 ## AI Collaboration Policy
 
 ### Specification Authority
-- MASTER_SPECIFICATION.md is immutable without explicit user approval
+
+**MASTER_SPECIFICATION.md is the single, immutable source of truth.**
+
+- AI assistants must read MASTER_SPECIFICATION.md before starting any work
+- Changes to specifications require explicit user approval
 - Suggestions for changes must include: rationale, benefits, drawbacks, and impact scope
 - AI assistants cannot modify specifications independently
 
-### Required Reading
-All AI assistants must read in this order:
-1. MASTER_SPECIFICATION.md
-2. CHANGELOG.md
-3. Related design documents
+### Required Reading Order
 
-### Workflow
-1. Read MASTER_SPECIFICATION.md
-2. Read CHANGELOG.md
-3. Review related files
-4. Implement requested task
-5. Update documentation
-6. Update CHANGELOG.md
-7. Produce deliverables
+All AI assistants must read in this order:
+
+1. **MASTER_SPECIFICATION.md** (Official specifications)
+2. **CHANGELOG.md** (History of approved changes)
+3. **Related design documents** (Context and details)
 
 ---
 
@@ -232,5 +188,6 @@ All AI assistants must read in this order:
 
 | Date | Version | Notes |
 |------|---------|-------|
+| 2026-08-04 | v2.0 | Refactored: Separated specifications from operational rules |
 | 2026-08-03 | v2.0 | Initial creation: reorganized from AGENTS.md |
 
