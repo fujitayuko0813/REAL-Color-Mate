@@ -1,283 +1,129 @@
-# REAL Color Mate - AI Development Guide
+# REAL Color Mate - AI 開発ガイド (AGENTS.md)
 
-Version: 2.0  
-Last Updated: 2026-08-04
+バージョン: 2.0.1
+最終更新: 2026-08-05
 
----
+目的
 
-## Purpose
+この文書は REAL Color Mate プロジェクトにおけるAI共通ルール（すべてのAIエージェントに適用）を定義します。Copilot固有のルールは含まず、.github/copilot-instructions.md を参照してください。
 
-REAL Color Mate is an open hardware project that assists automotive paint color matching by measuring spectral information and providing practical color analysis.
+基本方針
 
-The objective is to build a portable, manufacturable, and maintainable device for real-world body shop use.
+- MASTER_SPECIFICATION.md が唯一の仕様書（Single Source of Truth）です。仕様の変更は明示的な承認を受けた場合のみ許可されます。
+- 既存の設計・仕様を勝手に変更してはなりません。
+- Unknown（仕様未確定事項）は推測して埋めないでください。Unknown は必ず追跡・解決します（Unknown 管理ルール参照）。
+- 提案やレビューは常に Evidence（根拠）を付けてください（Evidenceの例は下記）。
+- 変更履歴は CHANGELOG.md に追記してください。
 
-This project is NOT intended to copy or reverse engineer commercial color matching systems.
+適用範囲
 
-Every contribution should move the project toward a manufacturable product.
+- 本書は ChatGPT、Gemini、Copilot 等、プロジェクト内で利用されるすべてのAIに適用されます。
+- Copilot専用のコード生成方針やコメントスタイル等は .github/copilot-instructions.md に記載し、本書では参照のみとします。
 
----
+レビュー手順（共通）
 
-## Single Source of Truth
+以下の観点に基づいてレビューを実施します。ビルド・コンパイル整合性チェックを必須レビュー項目として追加しています。
 
-**MASTER_SPECIFICATION.md is the Single Source of Truth.**
+1. 仕様整合
+   - MASTER_SPECIFICATION.md に照合し、差分や矛盾がないことを確認します。
+2. Unknown の有無
+   - 未解決の Unknown がある場合は Issue 作成済みであることを確認し、Issue 番号を MASTER_SPECIFICATION.md に併記します。
+3. Evidence の提示
+   - 提案・修正には必ず Evidence（根拠）を添付します。
+4. ビルド・コンパイル整合性チェック（成果物ごと）
+5. ドキュメント整合（リンク切れ、Markdown 構文）
+6. BOM・回路・図面等の整合
 
-All official project specifications, hardware configuration, software stack, optical specifications, and component verification rules are defined in:
+ビルド・コンパイル整合性チェック（必須レビュー項目）
 
-> [MASTER_SPECIFICATION.md](./MASTER_SPECIFICATION.md)
+成果物ごとに以下を確認し、検証ログや出力をレビューに添付してください。
 
-AI assistants must always read these files in order before making design decisions:
+- Arduino (ESP32/Arduinoフレームワーク)
+  - コンパイル成功（IDE/CIビルドログを添付）
+  - include 漏れなし
+  - 依存ライブラリ確認（ライブラリ名とバージョンを明記）
 
-1. **MASTER_SPECIFICATION.md** - Official project specifications
-2. **CHANGELOG.md** - Official history of all design changes
-3. **Related design documents** - Context and implementation details
+- OpenSCAD
+  - Render (F6) が成功すること
+  - STL エクスポートが可能であること（エクスポートログを添付）
+  - include/use の漏れなし
 
-Do not modify the project specification without explicit user approval.
+- KiCad
+  - ERC（Electrical Rules Check）実行・確認結果を添付
+  - DRC（Design Rules Check）実行・確認結果を添付
+  - フットプリント欠落なし（ライブラリ参照の整合を確認）
 
----
+- ドキュメント
+  - Markdown 構文エラーなし（Markdown lint の結果を添付）
+  - リンク切れなし（相対・絶対リンク両方の確認結果を添付）
 
-## Core Principles
+Unknown 管理ルール（必須）
 
-Always prioritize:
+Unknown は放置せず、以下のフローで管理します。Unknown は必ず GitHub Issue と紐付けます。
 
-- Practicality
-- Manufacturability
-- Maintainability
-- Repeatability
-- Verified information
-- Consistency
+運用フロー
 
-Never prioritize unnecessary complexity over usability.
+1. Unknown 発生（作業中に仕様未確定点を検出）
+2. MASTER_SPECIFICATION.md に Unknown を明記（該当セクションに追記し、"Unknown" タグと Issue 番号を併記）
+3. GitHub Issue を作成（タイトルに "Unknown:" を含める）
+4. 担当決定（Issue に assignee を設定）
+5. 調査を実施
+6. データ取得（実測、メーカー資料、データシート等）
+7. レビュー（Evidence を添付）
+8. 承認（責任者・担当者による承認）
+9. MASTER_SPECIFICATION.md を更新（変更履歴を残す）
+10. CHANGELOG.md を更新（バージョン番号付与）
+11. Issue をクローズ
 
----
+- 進捗や結果は Issue スレッドに記録します。
+- Unknown のステータスは常に最新に保ってください（例：Issue にラベル: unknown を付与）。
 
-## Development Rules
+Evidence（根拠）の要件
 
-### Always
+- 提案や修正には必ず Evidence を添付することを必須とします。
+- 許容される Evidence の例:
+  - メーカー公式資料
+  - データシート
+  - 実測値（測定手法と条件を明記）
+  - 公式ドキュメント
+  - ユーザー測定結果（方法と生データ）
+- 推測や未確認の仮定は Evidence として扱いません。仮説は明示的に"仮説"としてタグ付けし、必ず追加の調査/測定で裏付けてください。
 
-- Read **MASTER_SPECIFICATION.md** before starting work
-- Read **CHANGELOG.md** before implementing changes
-- Produce actual deliverables whenever possible
-- Include version numbers
-- Keep documentation synchronized
-- Explain assumptions
-- Clearly distinguish verified information from assumptions
-- Mark temporary designs as "Concept Design"
-- Keep all project files internally consistent
+レビュー結果の分類
 
-### Never
+- PASS: 修正不要
+- MINOR: 軽微修正（仕様変更を伴わない）
+- MAJOR: 設計変更が必要（MASTER_SPECIFICATION への修正案を作成）
+- BLOCKER: 重大問題（リリース/次工程を停止するレベル）
 
-- Guess specifications
-- Invent dimensions
-- Invent electrical characteristics
-- Invent calibration values
-- Invent component performance
-- Change project architecture without approval
-- Replace existing work without explanation
-- Remove existing functionality without approval
-- Use obsolete or unavailable components when practical alternatives exist
+Definition of Done（レビュー完了条件）
 
-### If Information is Unavailable
-
-Explicitly state: **Unknown**
-
-- Explain why
-- Suggest how to verify it
-
-Never fabricate technical information.
-
----
-
-## Design Philosophy
-
-The project should be manufacturable using commonly available tools and services.
-
-Examples include:
-
-- JLCPCB
-- PCBWay
-- Commercial PCB manufacturers
-- Commercial 3D printing services
-
-Every design should be realistically manufacturable.
-
----
-
-## Design Stages
-
-### Concept Design
-
-- Estimated dimensions allowed
-- Placeholder models allowed
-- Experimental ideas allowed
-
-### Production Design
-
-- Measured dimensions only
-- Verified components only
-- Manufacturing-ready data
-- Complete documentation
-
-Never confuse these two stages.
-
----
-
-## Hardware and Software Specifications
-
-For complete hardware and software specifications, see:
-
-> [MASTER_SPECIFICATION.md - Hardware Specification](./MASTER_SPECIFICATION.md#hardware-specification)
-> 
-> [MASTER_SPECIFICATION.md - Software Stack](./MASTER_SPECIFICATION.md#software-stack)
-
-Key components are documented in the official specification.
-
----
-
-## Repository Structure
-
-For the official repository structure, see:
-
-> [MASTER_SPECIFICATION.md - Repository Structure](./MASTER_SPECIFICATION.md#repository-structure)
-
----
-
-## File Responsibilities
-
-| File | Purpose |
-|------|---------|
-| MASTER_SPECIFICATION.md | Official specifications (authority) |
-| CHANGELOG.md | All approved changes and version history |
-| docs/ | Design documents, calculations, research |
-| hardware/ | KiCad schematics, PCB layouts |
-| software/ | ESP32 firmware source code |
-| mechanical/ | OpenSCAD, STEP, STL models |
-| calibration/ | Calibration data and procedures |
-| manufacturing/ | Manufacturing instructions |
-| tools/ | Development utilities |
-| BOM.md | Parts list and procurement |
-
----
-
-## AI Collaboration
-
-This repository is intended for collaborative development using multiple AI assistants.
-
-Examples include:
-
-- ChatGPT
-- Google Gemini
-- GitHub Copilot
-
-Every AI assistant must follow the same specification (MASTER_SPECIFICATION.md).
-
-No AI has authority to redefine project requirements.
-
-Suggestions should be presented as proposals, not decisions.
-
----
-
-## AI Responsibilities
-
-| Assistant | Responsibility |
-|-----------|-----------------|
-| **ChatGPT** | Architecture, Documentation, OpenSCAD, Firmware Design, Project Management |
-| **Google Gemini** | Mathematics, Color Science, Algorithm Review, Data Analysis |
-| **GitHub Copilot** | Implementation, Code Completion, Refactoring, Unit Tests, Code Review |
-
-All assistants must respect previous work and maintain consistency.
-
----
-
-## Workflow
-
-1. Read **MASTER_SPECIFICATION.md**
-2. Read **CHANGELOG.md**
-3. Review related files
-4. Implement requested task
-5. Update documentation
-6. Update **CHANGELOG.md**
-7. Produce deliverables
-
----
-
-## Deliverables
-
-Whenever applicable, produce actual files:
-
-- Arduino Source Code
-- ESP32 Firmware
-- KiCad Project
-- PCB Gerber Files
-- Bill of Materials (BOM)
-- OpenSCAD Models
-- STL Files
-- STEP Files
-- CSV Data Files
-- Calibration Files
-- Documentation
-- Diagrams
-
-Avoid delivering explanation only.
-
----
-
-## Versioning
-
-Every deliverable should include a version number:
-
-- **v0.1** - Concept Design
-- **v0.5** - Prototype
-- **v1.0** - Production Release
-
-For complete versioning standards, see:
-
-> [MASTER_SPECIFICATION.md - Versioning Standard](./MASTER_SPECIFICATION.md#versioning-standard)
-
----
-
-## Documentation Standard
-
-Documentation should be:
-
-- Clear
-- Reproducible
-- Technically accurate
-- Manufacturing-oriented
-
-Avoid unnecessary verbosity.
-
----
-
-## Error Handling
-
-If information cannot be verified:
-
-- State that it is **Unknown**
-- Explain why
-- Suggest how to verify it
-
-Never fabricate technical information.
-
----
-
-## Quality Checklist
-
-Before completing any task, verify:
-
-- □ MASTER_SPECIFICATION.md read and understood
-- □ Specifications followed
-- □ No guessed values
-- □ Files remain consistent
-- □ Documentation updated
-- □ Version updated
-- □ CHANGELOG updated
-- □ Manufacturable output
-- □ Deliverables are actual files
-
----
-
-## Final Objective
-
-The final objective is to create a practical, portable automotive paint measurement system that can be reproduced by third parties using the published manufacturing data.
-
-Every contribution should move the project closer to that objective.
+レビューは以下の項目すべてを満たしたときに完了とします。
+
+- [ ] MASTER_SPECIFICATION 整合
+- [ ] CHANGELOG 更新（該当する場合）
+- [ ] Unknown なし（残る場合は Issue 作成済み）
+- [ ] ビルド成功（該当成果物）
+- [ ] ドキュメント更新（該当する場合）
+- [ ] BOM 整合
+- [ ] 回路整合
+- [ ] OpenSCAD 整合（該当する場合）
+- [ ] KiCad 整合（該当する場合）
+- [ ] バージョン更新（該当する場合）
+
+作業前チェックリスト
+
+- MASTER_SPECIFICATION.md を熟読
+- CHANGELOG.md を確認
+- AGENTS.md を確認（本ファイル）
+- .github/copilot-instructions.md（Copilot用ルール）を確認
+- 関連ドキュメント（docs/）を確認
+
+記録と追跡
+
+- すべての決定、Evidence、レビューコメントは Issue または PR に記録します。
+- MASTER_SPECIFICATION.md へ仕様追記を行った場合、必ず Issue 番号を記載してください。
+
+注記
+
+- Copilot専用ルール（コード生成指針等）は .github/copilot-instructions.md に限定して記載してください。本書はAI共通ルールおよびレビュー／品質管理に集中します。

@@ -45,3 +45,26 @@ This refactoring improves separation of responsibilities:
 The refactoring maintains all project decisions while clarifying documentation structure.
 
 ---
+
+## [2.0.1] - 2026-08-05
+
+### AI Collaboration Rules (Non-functional changes)
+
+#### Added
+
+- **AGENTS.md**: Added AI 共通ルールの改善
+  - ビルド・コンパイル整合性チェックをレビュー項目に追加（Arduino / OpenSCAD / KiCad / ドキュメント）
+  - Unknown 管理ルールを明確化（MASTER_SPECIFICATION への記載、Issue 連携、担当決定～承認～仕様更新～CHANGELOG 反映までのフロー）
+  - Evidence（根拠）を必須化（許容される根拠の例を列挙）
+  - レビュー結果の分類を追加（PASS / MINOR / MAJOR / BLOCKER）
+  - Definition of Done（レビュー完了条件）を追加
+
+- **.github/copilot-instructions.md**: 役割分離を明確化（Copilot 専用ルールのみを記載）
+
+- **docs/github_ai_workflow.md**: AI 共同開発のワークフロー補助資料を追加
+
+#### Rationale
+
+- 既存仕様には変更を加えず、AI 関係ドキュメントの運用・レビュー手順の改善を行いました。
+
+---

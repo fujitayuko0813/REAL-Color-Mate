@@ -1,301 +1,65 @@
 # GitHub Copilot Instructions
 
-**Version:** 2.0  
-**Last Updated:** 2026-08-04
+Version: 2.0.1
+Last Updated: 2026-08-05
 
----
+目的
 
-## 🎯 Purpose
+このファイルは GitHub Copilot に固有のルールおよびコード生成に関する指針を定義します。AI 共通ルール（レビュー手順、Unknown 管理、Evidence 必須、Definition of Done 等）は AGENTS.md に記載されているため、本ファイルでは Copilot 固有の運用に絞ります。
 
-This file defines how GitHub Copilot should interact with the REAL Color Mate project.
+参照
 
-All Copilot work must follow these instructions **before starting any task**.
+- AI 共通ルール: AGENTS.md（必ず参照し遵守すること）
+- 仕様書: MASTER_SPECIFICATION.md（Single Source of Truth）
 
----
+主な責務（Copilot）
 
-## 📖 Required Reading Order
+- 実装（Implementation）: コード、設定ファイル、CI 設定等の作成
+- コード補完（Code Completion）: 既存コードの補完作業
+- リファクタリング（Refactoring）: 可読性・保守性の向上
+- ユニットテストの作成（Unit Tests）
+- プルリクエストの作成（PR）と説明文の作成
 
-**BEFORE STARTING ANY WORK, READ IN THIS ORDER:**
+禁止／制約（Copilot専用）
 
-1. **[MASTER_SPECIFICATION.md](../../MASTER_SPECIFICATION.md)**
-   - **MASTER_SPECIFICATION.md is the Single Source of Truth**
-   - Official project specifications
-   - Hardware and software stack details
-   - Design stages and versioning rules
-   - Component verification rules
+- MASTER_SPECIFICATION.md を直接編集しないこと
+- 仕様が不明な場合に勝手に設計や数値を決めないこと（Unknown として報告する）
+- 設計変更を伴う提案は PR で明確に "MAJOR" 分類として提出し、必ず Evidence を添付すること
 
-2. **[CHANGELOG.md](../../CHANGELOG.md)**
-   - History of approved changes
-   - Previous decisions and their context
+コード生成ルール
 
-3. **[AGENTS.md](../../AGENTS.md)**
-   - AI development guide
-   - Development rules and principles
-   - AI collaboration guidelines
-   - Workflow procedures
+- コメントスタイル
+  - 日本語コメントは技術的な説明に限定し、英語コメントは外部公開用に整形する（両方併記可）
+- Commit 単位
+  - 1コミット = 1意図（例: バグ修正、機能追加、ドキュメント更新）
+  - 小さすぎるコミットは避けるが、レビューが容易な粒度を保つこと
+- PR 単位
+  - 1 PR = 1機能または 1課題の完了
+  - PR 本文に以下を含める: 目的、変更点、ビルド手順、テスト手順、Evidence
+- ファイルヘッダ
+  - 新規ファイルにはファイル目的とバージョンをヘッダに明記すること
 
-4. **Related documentation** (if applicable)
-   - Design documents in `docs/`
-   - Component research in existing files
+C++ / Arduino コーディングスタイル（概要）
 
----
+- 変数命名: lower_snake_case または lowerCamelCase（プロジェクト既存スタイルに合わせる）
+- 定数: UPPER_SNAKE_CASE
+- ヘッダファイル: include ガードまたは #pragma once を使用
+- メモリ管理: 動的確保は最小限にし、スマートポインタ使用を検討
+- Serial デバッグ: リリースでは適切に制御（ログレベル）する
+- 配線周りのマクロや定義は MASTER_SPECIFICATION.md に合わせる
 
-## ✅ Core Copilot Responsibilities
+PR 作成時の必須項目（テンプレート）
 
-GitHub Copilot is responsible for:
+- 対象 Issue 番号（ある場合）
+- 変更の概要
+- ビルド手順と確認ログ（ビルドチェックの結果）
+- Evidence（根拠）
+- レビュー完了条件（Definition of Done）への照合チェックリスト
 
-- **Implementation** - Writing code and configurations
-- **Code Completion** - Generating code snippets
-- **Refactoring** - Improving existing code structure
-- **Unit Tests** - Writing and maintaining test suites
-- **Code Review** - Identifying potential issues
+Quality Gate（Copilot用）
 
-**Copilot is NOT responsible for:**
+- Copilot の作業は AGENTS.md の「Definition of Done」を満たすことが最終目標です。
 
-- Architecture decisions (handled by ChatGPT)
-- Mathematics and algorithms (handled by Gemini)
-- Project specifications (read-only from MASTER_SPECIFICATION.md)
-- Design decisions without explicit user approval
+最後に
 
----
-
-## 🛑 Critical Rules - NEVER VIOLATE
-
-### Specifications
-
-- ❌ Do NOT modify MASTER_SPECIFICATION.md without explicit user approval
-- ❌ Do NOT guess specifications
-- ❌ Do NOT invent dimensions
-- ❌ Do NOT invent electrical characteristics
-- ❌ Do NOT invent calibration values
-- ✅ If information is unavailable, state: **Unknown**
-
-### Code and Files
-
-- ✅ Always produce actual deliverables (code, configs, tests)
-- ✅ Include version numbers in deliverables
-- ✅ Keep documentation synchronized with code changes
-- ✅ Clearly distinguish verified information from assumptions
-- ❌ Do NOT replace existing work without explanation
-- ❌ Do NOT remove functionality without approval
-
-### Design
-
-- ✅ Mark concept designs as "Concept Design" clearly
-- ✅ Prioritize: Practicality → Manufacturability → Maintainability
-- ✅ Ensure designs are manufacturable with common services (JLCPCB, PCBWay, etc.)
-- ❌ Do NOT use obsolete or unavailable components when practical alternatives exist
-
----
-
-## 📋 Pre-Work Checklist
-
-Before completing ANY task, verify:
-
-- [ ] Read MASTER_SPECIFICATION.md (Single Source of Truth)
-- [ ] Read CHANGELOG.md
-- [ ] Read AGENTS.md
-- [ ] Related files reviewed (if applicable)
-- [ ] No guessed specifications
-- [ ] No invented values
-- [ ] Specifications followed
-- [ ] Files remain consistent
-- [ ] Documentation updated
-- [ ] Version numbers included
-- [ ] CHANGELOG.md updated
-- [ ] Deliverables are actual files (not explanations only)
-
----
-
-## 🔄 Workflow for Tasks
-
-1. **Read** the required documentation files (in order above)
-2. **Review** related project files
-3. **Implement** the requested task
-4. **Test** the implementation (if applicable)
-5. **Update** documentation to match changes
-6. **Verify** all files remain internally consistent
-7. **Update** [CHANGELOG.md](../../CHANGELOG.md) with the change
-8. **Deliver** actual files, not explanations
-
----
-
-## 📁 Repository Structure Reference
-
-For the official repository structure, see:
-
-> [MASTER_SPECIFICATION.md - Repository Structure](../../MASTER_SPECIFICATION.md#repository-structure)
-
-Quick reference:
-
-```
-REAL-Color-Mate/
-├── .github/
-│   └── copilot-instructions.md    ← You are here
-├── hardware/                       # KiCad PCB designs
-├── software/                       # ESP32 firmware (Arduino IDE)
-├── mechanical/                     # OpenSCAD / STEP / STL files
-├── calibration/                    # Calibration data and procedures
-├── docs/                           # Design documents and research
-├── manufacturing/                  # Manufacturing instructions
-├── tools/                          # Development utilities
-├── BOM.md                         # Bill of materials
-├── MASTER_SPECIFICATION.md        # 🔴 Official specs (Single Source of Truth)
-├── AGENTS.md                      # AI development guide
-├── CHANGELOG.md                   # Version history
-├── IDEA.md                        # Future ideas and candidates
-├── ROADMAP.md                     # Development roadmap
-├── README.md                      # Project overview
-└── LICENSE                        # MIT License
-```
-
----
-
-## 🛠️ Hardware Platform (Reference)
-
-For complete hardware specifications, see:
-
-> [MASTER_SPECIFICATION.md - Hardware Specification](../../MASTER_SPECIFICATION.md#hardware-specification)
-
-Quick reference:
-
-| Component | Value | Status |
-|-----------|-------|--------|
-| Microcontroller | ESP32-WROOM-32 | Decided |
-| Color Sensor | Adafruit AS7341 | Decided |
-| LED | Cree XP-G4 | Decided |
-| LED Driver | STMicroelectronics ALED8102 | Decided |
-| Power | 5V | Decided |
-| Storage | microSD Card | Decided |
-
----
-
-## 💻 Software Stack (Reference)
-
-For complete software specifications, see:
-
-> [MASTER_SPECIFICATION.md - Software Stack](../../MASTER_SPECIFICATION.md#software-stack)
-
-Quick reference:
-
-| Component | Tool | Status |
-|-----------|------|--------|
-| IDE | Arduino IDE | Decided |
-| Framework | ESP32 Arduino Framework | Decided |
-| PCB Design | KiCad | Decided |
-| 3D Design | OpenSCAD | Decided |
-| Data Format | CSV | Decided |
-| Version Control | Git / GitHub | Decided |
-
----
-
-## 🎓 Design Stages
-
-For complete design stage definitions, see:
-
-> [MASTER_SPECIFICATION.md - Design Stages](../../MASTER_SPECIFICATION.md#design-stages)
-
-### Concept Design
-- Estimated dimensions allowed
-- Placeholder models allowed
-- Experimental ideas allowed
-- **MUST be clearly marked as "Concept Design"**
-
-### Production Design
-- Measured dimensions only
-- Verified components only
-- Manufacturing-ready data
-- Complete documentation
-- Ready for JLCPCB, PCBWay, or commercial services
-
-**Never confuse these two stages.**
-
----
-
-## 📊 Versioning Standard
-
-For complete versioning standards, see:
-
-> [MASTER_SPECIFICATION.md - Versioning Standard](../../MASTER_SPECIFICATION.md#versioning-standard)
-
-Quick reference:
-
-| Version | Stage | Use Case |
-|---------|-------|----------|
-| v0.1 | Concept | Initial prototype concept |
-| v0.5 | Prototype | Working prototype with testing |
-| v1.0 | Production | Manufacturing-ready release |
-
-Always include version numbers in deliverables.
-
----
-
-## 🤝 AI Collaboration
-
-This project uses multiple AI assistants for different specialties:
-
-| Assistant | Responsibility |
-|-----------|-----------------|
-| **GitHub Copilot** (You) | Implementation, Code Completion, Refactoring, Unit Tests, Code Review |
-| **ChatGPT** | Architecture, Documentation, OpenSCAD, Firmware Design, Project Management |
-| **Google Gemini** | Mathematics, Color Science, Algorithm Review, Data Analysis |
-
-**All assistants must:**
-- Read MASTER_SPECIFICATION.md first
-- Respect previous work
-- Maintain consistency
-- Follow the same rules
-
----
-
-## ❓ Error Handling
-
-**If you cannot verify information:**
-
-1. State clearly: **Unknown**
-2. Explain why it's unknown
-3. Suggest how to verify it
-4. **Never fabricate technical information**
-
-Example:
-```
-Unknown: The exact calibration offset for the AS7341 sensor in this optical chamber.
-
-Why: Calibration data requires physical testing with this specific configuration.
-
-Suggest: Run calibration procedure with standard color references and record results.
-```
-
----
-
-## ✨ Quality Gate
-
-**Your work is complete ONLY when ALL of these are true:**
-
-- ✅ MASTER_SPECIFICATION.md read and understood (Single Source of Truth)
-- ✅ CHANGELOG.md read
-- ✅ Specifications followed exactly
-- ✅ No guessed or invented values
-- ✅ All files remain internally consistent
-- ✅ Documentation updated to reflect changes
-- ✅ Version numbers included
-- ✅ CHANGELOG.md updated
-- ✅ Deliverables are actual files (code, configs, CAD files, etc.)
-- ✅ Output is manufacturing-ready (or clearly marked as Concept Design)
-
----
-
-## 📞 Questions?
-
-If instructions are unclear or conflicting:
-
-1. Ask the user for clarification
-2. Reference the specific instruction file and line
-3. Explain why the instruction is ambiguous
-4. Suggest how to resolve it
-
----
-
-**Last Updated:** 2026-08-04  
-**Authority:** MASTER_SPECIFICATION.md  
-**Reading Order:** MASTER_SPECIFICATION.md → CHANGELOG.md → AGENTS.md
+不明点や矛盾があれば必ずユーザーへ確認を行い、勝手な推測や仕様変更は行わないでください。
