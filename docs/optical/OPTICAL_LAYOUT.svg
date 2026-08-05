@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Simple conceptual optical layout diagram for REAL Color Mate (v0.3-prelim).
+  This is a schematic overview (not to scale). Exact dimensions: TBD.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <!-- Measurement plane (sample surface) -->
+  <line x1="50" y1="420" x2="850" y2="420" stroke="#000" stroke-width="2"/>
+  <text x="60" y="440" font-family="Arial" font-size="14" fill="#000">Measurement surface (sample)</text>
+
+  <!-- Measurement aperture -->
+  <ellipse cx="450" cy="380" rx="60" ry="16" fill="#f2f2f2" stroke="#666" stroke-width="1"/>
+  <text x="470" y="380" font-family="Arial" font-size="12" fill="#000">Measurement aperture (TBD)</text>
+
+  <!-- LED ring -->
+  <g transform="translate(450,300)">
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#f04" stroke-width="2"/>
+    <!-- 8 LEDs -->
+    <g fill="#ffb35c">
+      <circle cx="0" cy="-120" r="10"/>
+      <circle cx="84.85" cy="-84.85" r="10"/>
+      <circle cx="120" cy="0" r="10"/>
+      <circle cx="84.85" cy="84.85" r="10"/>
+      <circle cx="0" cy="120" r="10"/>
+      <circle cx="-84.85" cy="84.85" r="10"/>
+      <circle cx="-120" cy="0" r="10"/>
+      <circle cx="-84.85" cy="-84.85" r="10"/>
+    </g>
+    <text x="-70" y="-140" font-family="Arial" font-size="12" fill="#000">LED ring (8 × Cree XP‑G4, 5000K)</text>
+  </g>
+
+  <!-- AS7341 sensor block (on-axis) -->
+  <rect x="420" y="260" width="60" height="40" fill="#d0e7ff" stroke="#2b6fbf" stroke-width="1.5"/>
+  <text x="430" y="285" font-family="Arial" font-size="12" fill="#000">AS7341</text>
+  <line x1="450" y1="300" x2="450" y2="360" stroke="#000" stroke-width="1"/>
+
+  <!-- 0° receiver arrow -->
+  <polygon points="450,250 445,270 455,270" fill="#000"/>
+  <text x="462" y="252" font-family="Arial" font-size="12" fill="#000">0° Receiver (sensor optical axis)</text>
+
+  <!-- 45° illumination rays -->
+  <g stroke="#f04" stroke-width="2" stroke-linecap="round">
+    <line x1="560" y1="170" x2="480" y2="340" />
+    <line x1="680" y1="200" x2="520" y2="360" />
+    <line x1="730" y1="150" x2="540" y2="350" />
+  </g>
+  <text x="580" y="150" font-family="Arial" font-size="12" fill="#000">45° illumination (nominal)</text>
+
+  <!-- Hood / internal matte black chamber -->
+  <path d="M200 180 C300 100 600 100 700 180 L750 360 C650 420 250 420 200 360 Z" fill="#f8f8f8" stroke="#999" stroke-width="1"/>
+  <text x="220" y="150" font-family="Arial" font-size="12" fill="#000">Replaceable measurement hood (outline)</text>
+  <text x="230" y="170" font-family="Arial" font-size="11" fill="#000">Interior finish: matte black (TBD material)</text>
+
+  <!-- labels -->
+  <text x="30" y="30" font-family="Arial" font-size="16" fill="#000">OPTICAL_LAYOUT — conceptual (not to scale)</text>
+  <text x="30" y="50" font-family="Arial" font-size="12" fill="#000">Geometry: 45° illumination / 0° observation</text>
+
+  <!-- measurement spot -->
+  <circle cx="450" cy="380" r="6" fill="#000"/>
+  <text x="460" y="396" font-family="Arial" font-size="12" fill="#000">Measurement spot (center)</text>
+
+  <!-- legend -->
+  <rect x="30" y="360" width="170" height="130" fill="#ffffff" stroke="#ccc"/>
+  <text x="40" y="380" font-family="Arial" font-size="12" fill="#000">Legend</text>
+  <circle cx="46" cy="400" r="6" fill="#ffb35c"/><text x="60" y="405" font-family="Arial" font-size="11" fill="#000">LED (concept)</text>
+  <rect x="36" y="420" width="16" height="10" fill="#d0e7ff" stroke="#2b6fbf"/><text x="60" y="430" font-family="Arial" font-size="11" fill="#000">AS7341 (sensor)</text>
+  <ellipse cx="46" cy="445" rx="8" ry="2.5" fill="#f2f2f2" stroke="#666"/><text x="60" y="448" font-family="Arial" font-size="11" fill="#000">Measurement aperture</text>
+
+  <!-- footer note -->
+  <text x="30" y="505" font-family="Arial" font-size="11" fill="#555">Notes: This schematic is conceptual; exact positions, spacings, and dimensions are TBD. Do not use for manufacturing without updated production drawings.</text>
+</svg>
