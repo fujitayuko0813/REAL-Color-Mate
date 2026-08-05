@@ -31,6 +31,21 @@ Create a portable, reproducible automotive paint measurement system using common
 
 ---
 
+## Design Constraints
+
+The following constraints are mandatory.
+
+- Portable handheld device
+- Manufacturable using commercial PCB services
+- Manufacturable using commercial 3D printing
+- Automotive repair shop environment
+- Serviceable design
+- Replaceable measurement hood
+- Maintainable firmware
+- Reproducible manufacturing
+
+---
+
 ## Hardware Specification
 
 ### Microcontroller (MCU)
@@ -87,42 +102,25 @@ Create a portable, reproducible automotive paint measurement system using common
 
 ---
 
-## Repository Structure
+## Scope
 
-```
-REAL-Color-Mate/
-├── hardware/          # KiCad PCB design
-├── software/          # ESP32 firmware
-├── mechanical/        # OpenSCAD / STEP / STL
-├── calibration/       # Calibration data and procedures
-├── docs/              # Design documents and research
-├── manufacturing/     # Manufacturing instructions
-├── tools/             # Development tools
-├── BOM.md             # Bill of materials
-├── MASTER_SPECIFICATION.md    # This file (official specifications)
-├── README.md          # Project overview
-├── ROADMAP.md         # Development roadmap
-├── IDEA.md            # Future ideas
-├── CHANGELOG.md       # Version history
-├── AGENTS.md          # AI collaboration rules
-└── .github/
-    └── copilot-instructions.md # AI behavior rules
-```
+The following items are included or excluded from the project scope.
 
----
+Included
 
-## Design Stages
+- Spectral measurement
+- XYZ conversion
+- CIE Lab conversion
+- DeltaE calculation
+- Calibration
+- CSV data logging
 
-### Concept Design
-- Estimated dimensions allowed
-- Placeholder models allowed
-- Experimental ideas allowed
+Excluded
 
-### Production Design
-- Measured dimensions only
-- Verified components only
-- Manufacturing-ready data
-- Complete documentation
+- Automatic paint formulation
+- Commercial color database
+- Reverse engineering of commercial colorimeters
+- Cloud services
 
 ---
 
@@ -138,49 +136,11 @@ If information is unavailable: **Unknown**
 
 ---
 
-## Versioning Standard
-
-| Version | Stage | Description |
-|---------|-------|-------------|
-| v0.1 | Concept | Initial prototype concept |
-| v0.5 | Prototype | Working prototype with testing |
-| v1.0 | Production | Manufacturing-ready release |
-
----
-
-## Current Hardware / Software Configuration
-
-- **ESP32 MCU:** ESP32-WROOM-32
-- **Color Sensor:** Adafruit AS7341
-- **LED Driver:** STMicroelectronics ALED8102
-- **Power Supply:** 5V
-- **Storage:** microSD Card
-- **IDE:** Arduino IDE
-- **Framework:** ESP32 Arduino Framework
-- **PCB Design Tool:** KiCad
-- **3D Design Tool:** OpenSCAD
-- **Data Format:** CSV
-
----
-
 ## AI Collaboration Policy
-
-### Specification Authority
 
 **MASTER_SPECIFICATION.md is the single, immutable source of truth.**
 
-- AI assistants must read MASTER_SPECIFICATION.md before starting any work
-- Changes to specifications require explicit user approval
-- Suggestions for changes must include: rationale, benefits, drawbacks, and impact scope
-- AI assistants cannot modify specifications independently
-
-### Required Reading Order
-
-All AI assistants must read in this order:
-
-1. **MASTER_SPECIFICATION.md** (Official specifications)
-2. **CHANGELOG.md** (History of approved changes)
-3. **Related design documents** (Context and details)
+(Operational AI collaboration rules and workflows are defined in AGENTS.md.)
 
 ---
 
