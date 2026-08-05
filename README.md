@@ -9,3 +9,5 @@ Portable Color Measurement Tool for Automotive Paint Matching
 - [IDEA.md](./IDEA.md)
 - [docs/design_history.md](./docs/design_history.md)
 - [docs/component_selection.md](./docs/component_selection.md)
+- [docs/repository.md](./docs/repository.md)  # Repository layout (operational)
+
