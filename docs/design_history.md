@@ -2,6 +2,34 @@
 
 # Design History
 
+Decision ID
+
+- Format: DH-0001, DH-0002, ...
+- IDs are assigned in chronological order (earliest decision receives the lowest available number).
+
+Tags
+
+Use tags to categorize decisions. Examples:
+
+- ESP32
+- AS7341
+- Optics
+- LED
+- PCB
+- OpenSCAD
+- Firmware
+- Documentation
+- Project Management
+
+Decision Index
+
+The index below lists recorded design decisions with their Decision ID, Title, Status, and Date. Do not modify existing decisions; the full decision records appear later in this file.
+
+- DH-0001 — Master Specification v2.0 Created — Approved — 2026-08-04
+- DH-0002 — Design History Introduced — Approved — 2026-08-04
+
+----------------------------------------
+
 Purpose
 
 This document records the history of design decisions. It is NOT a formal specification.
