@@ -151,3 +151,53 @@ If information is unavailable: **Unknown**
 | 2026-08-04 | v2.0 | Refactored: Separated specifications from operational rules |
 | 2026-08-03 | v2.0 | Initial creation: reorganized from AGENTS.md |
 
+---
+
+## Display Module
+
+- **Module name:** Makerbase MKS MINI12864 V3
+
+- **Display controller:** Unknown (do not invent controller information here; record verified controller when available)
+
+- **Measured dimensions:**
+  - Mounting hole dimensions:
+    - Hole diameter: Unknown
+    - Center-to-center horizontal spacing: Unknown
+    - Center-to-center vertical spacing: Unknown
+    - Mounting hole pattern: Unknown
+  - LCD dimensions:
+    - Active area (W x H): Unknown
+    - Overall module W x H: Unknown
+    - Bezel thickness / visible border: Unknown
+  - Encoder dimensions:
+    - Shaft diameter: Unknown
+    - Body diameter: Unknown
+    - Shaft length (from front face): Unknown
+  - Reset button dimensions:
+    - Button cap diameter: Unknown
+    - Button travel: Unknown
+    - Button mounting footprint: Unknown
+  - SD card slot dimensions:
+    - Slot opening W x H: Unknown
+    - Slot depth: Unknown
+    - Card insertion orientation: Unknown
+  - Rear-side component height:
+    - Maximum component height above PCB (rear side): Unknown
+
+- **Measurement status:** Measured from actual hardware. Where any value is listed as **Unknown**, the specific measurement was not available at the time of this update and must be filled in with verifiable measured values. Do NOT invent measurements — update these fields only with physically measured values recorded from the actual Makerbase MKS MINI12864 V3 module.
+
+Mechanical Design Policy (Display & Enclosure):
+
+- Mechanical parts shall prioritize ease of assembly over tight cosmetic tolerances.
+- Use practical clearances suitable for FDM 3D printing.
+- LCD window shall include approximately 0.3 mm clearance per side.
+- PCB shall have approximately 0.5 mm enclosure clearance.
+- Encoder shall rotate freely without touching the enclosure.
+- SD card shall be removable without disassembling the enclosure.
+- Optical components (sensor, LED ring, measurement hood) are excluded from this policy and shall be designed with high precision.
+
+Notes and Guidance:
+
+- Do not change any hardware selection or optical specifications in this document.
+- Do not remove or rewrite existing content. This section is appended-only and intended to be populated with measured values from verified hardware probing.
+- Follow Component Verification Rules: dimensions and physical characteristics must be measured and recorded; if measurements are unknown, explicitly mark as **Unknown** until verified.
