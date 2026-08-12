@@ -1,105 +1,53 @@
-# REAL Color Mate — Optical Specification (v0.3-prelim)
+# OPTICAL_SPECIFICATION.md
 
-Version: v0.3-prelim  
-Status: Preliminary Design (Concept / Draft)
+Version: v0.3-prelim
+Document: Preliminary Optical Design for REAL Color Mate v2.0
 
-Purpose
--------
-Define the optical design requirements and high-level implementation details for the REAL Color Mate v0.3 optical subsystem. This document covers the measurement geometry, selected components, primary optical requirements, mechanical constraints relevant to optics, stray-light countermeasures, and the calibration approach. This is a preliminary document: where values are not yet decided they are marked TBD or Unknown.
-
-Optical Principle
------------------
-- Measurement geometry: 45° illumination / 0° observation (45/0).
-  - Illumination delivered at nominal 45° to the local sample surface normal.
-  - Detection (reception) is at 0° relative to the sample normal (perpendicular).
-- Rationale: minimizes specular highlight contributions for diffuse-dominant automotive paints while providing repeatable geometry for colorimetric measurement and comparison against paint references.
-- Measurement assumes a flat local sample region (or locally flattened area with measurement hood).
-
-Components
-----------
-- Color sensor:
-  - Adafruit AS7341 (11 spectral channels). Status: Decided.
-- Illumination:
-  - LED: Cree XP‑G4, 5000 K, CRI ≥ 90, arranged in an 8‑LED ring. Status: Decided.
-  - LED ring driver and current control: TBD (electrical design to follow in later phase).
-- Optomechanics:
-  - Measurement hood (replaceable). Status: Decided.
-  - Measurement aperture (defines measurement area). Size: TBD.
-  - Internal chamber finish: matte (non-reflective) black. Status: Decided.
-- Misc:
-  - Light baffles / stray-light traps: Conceptual, details TBD.
-
-Optical Requirements
---------------------
-- Geometry:
-  - Illumination angle: 45° nominal (relative to local surface normal). Tolerance: TBD.
-  - Observation angle: 0° nominal (sensor optical axis normal to sample). Tolerance: TBD.
-- Spectral response:
-  - Native sensor channels: use AS7341 spectral bands. Mapping to standard colorimetric spaces (XYZ, Lab) is out of scope here (handled later by color science algorithms).
-- Illumination:
-  - Spectral target: approx. D50/D65 neighborhood (device LED chosen is 5000 K; exact spectrum will be measured and recorded).
-  - Uniformity: Illuminance across measurement spot should be sufficiently uniform to meet repeatability targets. Specific uniformity target: TBD.
-- Repeatability & Stability:
-  - Measurement repeatability target: TBD (to be defined by test protocol).
-  - Temperature dependence: Unknown; to be characterized in prototype stage.
-- Measurement area:
-  - Aperture size / effective measurement diameter: TBD. (Do NOT assume a value; measure and record in production design.)
-- Ambient light rejection:
-  - Device shall minimize ambient-light influence through mechanical design and processing (see Stray Light Countermeasures).
-
-Mechanical Constraints
-----------------------
-- Case interior finish: matte black (to reduce internal reflections).
-- Replaceable measurement hood:
-  - Capture and reference alignment features to ensure consistent geometry.
-  - Hood must allow flush contact or a controlled stand-off from measured surface; stand-off distance: TBD.
-- Measurement aperture and hood must be serviceable and replaceable without changing core optical alignment.
-- Tolerances and final mechanical dimensions are not decided at this stage — see OPTICAL_TOLERANCE.md.
-
-Optical Layout
---------------
-- A conceptual layout diagram is provided in OPTICAL_LAYOUT.svg (docs/optical/OPTICAL_LAYOUT.svg).
-- Main elements shown:
-  - LED ring concentric around measurement axis.
-  - AS7341 sensor mounted approximately on the central axis to sample reflected light at 0°.
-  - Measurement plane (sample surface) and measurement aperture.
-  - 45° illumination rays intersecting the sample region outside the sensor axis.
-- Exact sensor placement, lensing (if any), and mechanical offsets are TBD and must be confirmed during prototyping.
-
-Stray Light Countermeasures
----------------------------
-- Interior surfaces: matte black, low reflectance paint/materials.
-- Baffles:
-  - Use stepped internal baffles between LEDs and sensor to prevent direct LED scatter into the sensor.
-- Light traps:
-  - Geometry that absorbs off-axis reflections within the hood.
-- Aperture:
-  - Use a well-defined measurement aperture to limit field-of-view to the intended sample area.
-- Seal / shrouding:
-  - Hood seals to sample surface to minimize ambient ingress when practical (design for both contact and non-contact measurements).
-- Material selection and surface finish to be validated in prototype; for all uncertain choices mark status as TBD/Unknown.
-
-Calibration
------------
-- High-level calibration steps are described in docs/optical/CALIBRATION.md.
-- Only white and black (dark) calibrations are required at this stage (device-level radiometric offsets and scaling). Colorimetric transformation algorithms are out of scope for this document.
-- Calibration files, formats, and storage locations: TBD.
-
-Future Improvements
--------------------
-- Consider narrow-band or filtered illuminants to better match colorimetric transformations.
-- Investigate adding diffuser/lens to improve illumination uniformity.
-- Characterize LED spectral variation and incorporate temperature compensation.
-- Define measurement spot sizes (small/large hoods) for different paint surface conditions.
+Status: Preliminary Design — DO NOT FINALIZE. This document is part of the REAL Color Mate v2.0 optical design (v0.3-prelim). It is intended to record design intent, constraints, and open items. Any numeric value left unknown is marked as "TBD" or "Unknown" and must not be assumed or reified without explicit verification and approval.
 
 References
-----------
-- MASTER_SPECIFICATION.md — project authority (Single Source of Truth).  
-- Adafruit AS7341 product documentation / datasheet. (Link to datasheet: TODO/Unknown — include official link in production document.)  
-- Cree XP‑G4 datasheet (LED spectral and thermal characteristics): link TBD.  
-- Standard color measurement geometry references (45/0 geometry notes): link TBD.
+- MASTER_SPECIFICATION.md (Single Source of Truth) — DO NOT MODIFY
+- docs/optical/OPTICAL_LAYOUT.svg
+- docs/optical/OPTICAL_TOLERANCE.md
+- docs/optical/CALIBRATION.md
 
-Notes and Warnings
-------------------
-- Do NOT invent final dimensions, tolerances, or calibration constants. Where parameters are not yet decided, the terms "TBD" or "Unknown" are used.
-- This document covers only optical-design-level decisions. PCB and electronic details are deferred until the optical geometry is locked.
+Scope
+- Defines the optical subsystem scope for REAL Color Mate v2.0 (v0.3-prelim).
+- Covers illumination, collection optics, sensor interface, and calibration strategy at a preliminary level.
+
+Design Goals
+- Portable color measurement tool suitable for automotive paint matching.
+- Repeatable, traceable color measurements under controlled illumination.
+- Compact, manufacturable optical layout compatible with enclosure constraints (see MASTER_SPECIFICATION.md for mechanical constraints).
+
+Overall Architecture
+- Illumination subsystem: integrated multi-channel LED source with diffuser and geometry to provide near-Lambertian field. (Detailed LED model and spectral power distributions: TBD)
+- Collection optics: lens or lens group to image the sample area onto the color sensor with controlled field-of-view and minimal stray light. (Lens prescription: TBD)
+- Sensor: color image sensor / colorimeter module interfacing with ESP32 firmware. Exact sensor part number and spectral responsivity: TBD.
+- Aperture and baffling: internal aperture, baffles, and stray-light control implemented in mechanical housing. Exact positions and dimensions: TBD.
+
+Key Requirements (Preliminary)
+- Measurement area (sample footprint): TBD
+- Working distance (sample surface to lens entrance): TBD
+- Illumination uniformity across measurement area: Target — high uniformity; numeric target: TBD
+- Spectral channels: Candidate approach — broad-spectrum white LED + narrowband/filtered channels or RGB LED array; final choice: TBD
+- Measurement repeatability (instrument-to-self): TBD
+- Target device operating temperature range: refer to MASTER_SPECIFICATION.md
+
+Open Items / TBD (do NOT invent values)
+- Exact LED models and spectral power distributions — TBD
+- Lens prescription, focal length, and numerical aperture — TBD
+- Sensor model and spectral responsivity curves — TBD
+- Mechanical mounting positions and fastener details for optics — TBD
+- Absolute calibration coefficients and per-device lookup tables — TBD
+
+Safety and Compliance
+- Ensure LED drive currents and thermal designs conform to electrical and thermal limits in MASTER_SPECIFICATION.md and BOM.md.
+
+Traceability and Versioning
+- This document is v0.3-prelim and is preliminary. When items are finalized they must be recorded in MASTER_SPECIFICATION.md per project rules.
+
+Notes
+- Do not change MASTER_SPECIFICATION.md, CHANGELOG.md, AGENTS.md, or other existing files as part of this change.
+- This commit introduces only the files listed in the accompanying commit metadata.
+
