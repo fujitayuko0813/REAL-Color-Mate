@@ -1,8 +1,8 @@
-# REAL Color Mate - Master Specification v2.0
+# REAL Color Mate - Master Specification v2.1
 
-**Last Updated:** 2026-08-04  
+**Last Updated:** 2026-08-19  
 **Status:** Active Development  
-**Version:** v2.0
+**Version:** v2.1
 
 ---
 
@@ -14,6 +14,7 @@ This is the **single source of truth** for REAL Color Mate project specification
 - Candidates, ideas, and future plans are NOT included.
 - For ideas, see [IDEA.md](./IDEA.md)
 - For development plans, see [ROADMAP.md](./ROADMAP.md)
+- Design rationale is recorded in [docs/design_history.md](./docs/design_history.md)
 
 ---
 
@@ -49,20 +50,29 @@ The following constraints are mandatory.
 ## Hardware Specification
 
 ### Microcontroller (MCU)
-- **Component:** ESP32-WROOM-32
+- **Component:** ESP32-S3 DevKitC-1 N16R8
+- **Module:** ESP32-S3-WROOM-1 N16R8
 - **Function:** Main controller
 - **Status:** Decided
 
 ### Color Sensor
 - **Component:** Adafruit AS7341
-- **Function:** Spectral measurement (11 channels)
+- **Function:** Spectral measurement
+- **Channel definition:** Unknown; must be verified against the exact purchased component documentation before being recorded as a fixed specification.
 - **Status:** Decided
 
 ### LED Illumination
 - **Type:** LED Ring Illumination
 - **Component:** Cree XP-G4
-- **Driver:** STMicroelectronics ALED8102
+- **Part Number:** XPGEWT-02-0000-00000UHE3
+- **Quantity:** 8 used; 4 spare
+- **Driver:** STMicroelectronics ALED8102SXTTR
 - **Configuration:** 45° illumination, 0° observation angle
+- **Status:** Decided
+
+### Display / User Interface
+- **Module:** Makerbase MKS MINI12864 V3
+- **Function:** Display and user interface
 - **Status:** Decided
 
 ### Power Supply
@@ -106,7 +116,7 @@ The following constraints are mandatory.
 
 The following items are included or excluded from the project scope.
 
-Included
+### Included
 
 - Spectral measurement
 - XYZ conversion
@@ -115,7 +125,7 @@ Included
 - Calibration
 - CSV data logging
 
-Excluded
+### Excluded
 
 - Automatic paint formulation
 - Commercial color database
@@ -138,9 +148,11 @@ If information is unavailable: **Unknown**
 
 ## AI Collaboration Policy
 
-**MASTER_SPECIFICATION.md is the single, immutable source of truth.**
+**MASTER_SPECIFICATION.md is the single, authoritative source of truth.**
 
-(Operational AI collaboration rules and workflows are defined in AGENTS.md.)
+Operational AI collaboration rules and workflows are defined in AGENTS.md.
+
+No AI collaborator may change a decided specification without explicit project-owner approval.
 
 ---
 
@@ -148,12 +160,13 @@ If information is unavailable: **Unknown**
 
 | Date | Version | Notes |
 |------|---------|-------|
+| 2026-08-19 | v2.1 | Synchronized MCU and purchased hardware with approved BOM; removed unverified AS7341 channel count; normalized LED driver and LED part information |
 | 2026-08-04 | v2.0 | Refactored: Separated specifications from operational rules |
 | 2026-08-03 | v2.0 | Initial creation: reorganized from AGENTS.md |
 
 ---
 
-## Display Module
+## Display Module — Measurement Record
 
 - **Module name:** Makerbase MKS MINI12864 V3
 
@@ -184,9 +197,9 @@ If information is unavailable: **Unknown**
   - Rear-side component height:
     - Maximum component height above PCB (rear side): Unknown
 
-- **Measurement status:** Measured from actual hardware. Where any value is listed as **Unknown**, the specific measurement was not available at the time of this update and must be filled in with verifiable measured values. Do NOT invent measurements — update these fields only with physically measured values recorded from the actual Makerbase MKS MINI12864 V3 module.
+- **Measurement status:** Values marked **Unknown** have not yet been verified from the actual purchased hardware and must be measured before being used for production mechanical design.
 
-Mechanical Design Policy (Display & Enclosure):
+### Mechanical Design Policy (Display & Enclosure)
 
 - Mechanical parts shall prioritize ease of assembly over tight cosmetic tolerances.
 - Use practical clearances suitable for FDM 3D printing.
@@ -196,8 +209,7 @@ Mechanical Design Policy (Display & Enclosure):
 - SD card shall be removable without disassembling the enclosure.
 - Optical components (sensor, LED ring, measurement hood) are excluded from this policy and shall be designed with high precision.
 
-Notes and Guidance:
+### Notes and Guidance
 
-- Do not change any hardware selection or optical specifications in this document.
-- Do not remove or rewrite existing content. This section is appended-only and intended to be populated with measured values from verified hardware probing.
-- Follow Component Verification Rules: dimensions and physical characteristics must be measured and recorded; if measurements are unknown, explicitly mark as **Unknown** until verified.
+- Do not change hardware selection or optical specifications without project-owner approval.
+- Dimensions and physical characteristics must be measured and recorded; if measurements are unknown, explicitly mark as **Unknown** until verified.
