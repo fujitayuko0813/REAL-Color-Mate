@@ -1,7 +1,7 @@
 # REAL Color Mate - AI Development Guide
 
-Version: 2.0  
-Last Updated: 2026-08-04
+Version: 2.1  
+Last Updated: 2026-08-26
 
 ---
 
@@ -21,17 +21,17 @@ Every contribution should move the project toward a manufacturable product.
 
 **MASTER_SPECIFICATION.md is the Single Source of Truth.**
 
-All official project specifications, hardware configuration, software stack, optical specifications, and component verification rules are defined in:
+All formal project specifications are defined in:
 
 > [MASTER_SPECIFICATION.md](./MASTER_SPECIFICATION.md)
 
-AI assistants must always read these files in order before making design decisions:
+AI assistants must read these files in order before making design decisions:
 
 1. **MASTER_SPECIFICATION.md** - Official project specifications
-2. **CHANGELOG.md** - Official history of all design changes
+2. **CHANGELOG.md** - Approved change history
 3. **Related design documents** - Context and implementation details
 
-Do not modify the project specification without explicit user approval.
+No AI assistant may change a decided specification without explicit project-owner approval.
 
 ---
 
@@ -57,12 +57,11 @@ Never prioritize unnecessary complexity over usability.
 - Read **MASTER_SPECIFICATION.md** before starting work
 - Read **CHANGELOG.md** before implementing changes
 - Produce actual deliverables whenever possible
-- Include version numbers
 - Keep documentation synchronized
-- Explain assumptions
 - Clearly distinguish verified information from assumptions
-- Mark temporary designs as "Concept Design"
+- Mark temporary designs as **Concept Design**
 - Keep all project files internally consistent
+- Update CHANGELOG.md when an approved project change is made
 
 ### Never
 
@@ -74,31 +73,14 @@ Never prioritize unnecessary complexity over usability.
 - Change project architecture without approval
 - Replace existing work without explanation
 - Remove existing functionality without approval
-- Use obsolete or unavailable components when practical alternatives exist
 
 ### If Information is Unavailable
 
-Explicitly state: **Unknown**
+Explicitly state: **Unknown**.
 
-- Explain why
-- Suggest how to verify it
+Explain why it is unknown and, where useful, state how it can be verified.
 
 Never fabricate technical information.
-
----
-
-## Design Philosophy
-
-The project should be manufacturable using commonly available tools and services.
-
-Examples include:
-
-- JLCPCB
-- PCBWay
-- Commercial PCB manufacturers
-- Commercial 3D printing services
-
-Every design should be realistically manufacturable.
 
 ---
 
@@ -109,6 +91,7 @@ Every design should be realistically manufacturable.
 - Estimated dimensions allowed
 - Placeholder models allowed
 - Experimental ideas allowed
+- Must be clearly marked **Concept Design**
 
 ### Production Design
 
@@ -123,36 +106,40 @@ Never confuse these two stages.
 
 ## Hardware and Software Specifications
 
-For complete hardware and software specifications, see:
+For complete specifications, see:
 
-> [MASTER_SPECIFICATION.md - Hardware Specification](./MASTER_SPECIFICATION.md#hardware-specification)
-> 
-> [MASTER_SPECIFICATION.md - Software Stack](./MASTER_SPECIFICATION.md#software-stack)
-
-Key components are documented in the official specification.
+> [MASTER_SPECIFICATION.md — Hardware Specification](./MASTER_SPECIFICATION.md#hardware-specification)
+>
+> [MASTER_SPECIFICATION.md — Software Stack](./MASTER_SPECIFICATION.md#software-stack)
 
 ---
 
 ## Repository Structure
 
-For the official repository structure, see:
+Repository layout is an operational/documentation concern, not a formal product specification.
 
-> [MASTER_SPECIFICATION.md - Repository Structure](./MASTER_SPECIFICATION.md#repository-structure)
+See:
+
+> [docs/repository.md](./docs/repository.md)
+
+Keep repository-layout references synchronized when directories or top-level documents change.
 
 ---
 
 ## File Responsibilities
 
-| File | Purpose |
-|------|---------|
+| File / Directory | Purpose |
+|---|---|
 | MASTER_SPECIFICATION.md | Official specifications (authority) |
-| CHANGELOG.md | All approved changes and version history |
-| docs/ | Design documents, calculations, research |
-| hardware/ | KiCad schematics, PCB layouts |
-| software/ | ESP32 firmware source code |
-| mechanical/ | OpenSCAD, STEP, STL models |
-| calibration/ | Calibration data and procedures |
-| manufacturing/ | Manufacturing instructions |
+| CHANGELOG.md | Approved project/document changes and version history |
+| ROADMAP.md | Planned development work |
+| IDEA.md | Future ideas and proposals |
+| docs/ | Design rationale, component selection, technical documentation and research |
+| hardware/ | KiCad schematics and PCB layouts |
+| software/ | ESP32 firmware |
+| mechanical/ | OpenSCAD and mechanical design files |
+| calibration/ | Calibration procedures and calibration data |
+| manufacturing/ | Manufacturing instructions and production data |
 | tools/ | Development utilities |
 | BOM.md | Parts list and procurement |
 
@@ -160,31 +147,23 @@ For the official repository structure, see:
 
 ## AI Collaboration
 
-This repository is intended for collaborative development using multiple AI assistants.
+This repository supports collaborative development using ChatGPT, Google Gemini, and GitHub Copilot.
 
-Examples include:
-
-- ChatGPT
-- Google Gemini
-- GitHub Copilot
-
-Every AI assistant must follow the same specification (MASTER_SPECIFICATION.md).
+All assistants follow the same formal specification: **MASTER_SPECIFICATION.md**.
 
 No AI has authority to redefine project requirements.
 
-Suggestions should be presented as proposals, not decisions.
+Suggestions must be presented as proposals, not decisions.
 
----
-
-## AI Responsibilities
+### Suggested Responsibilities
 
 | Assistant | Responsibility |
-|-----------|-----------------|
-| **ChatGPT** | Architecture, Documentation, OpenSCAD, Firmware Design, Project Management |
-| **Google Gemini** | Mathematics, Color Science, Algorithm Review, Data Analysis |
-| **GitHub Copilot** | Implementation, Code Completion, Refactoring, Unit Tests, Code Review |
+|---|---|
+| ChatGPT | Architecture, documentation, OpenSCAD, firmware design, project management |
+| Google Gemini | Mathematics, color science, algorithm review, data analysis |
+| GitHub Copilot | Implementation, code completion, refactoring, unit tests, code review |
 
-All assistants must respect previous work and maintain consistency.
+These responsibilities are workflow guidance, not project specifications.
 
 ---
 
@@ -193,45 +172,23 @@ All assistants must respect previous work and maintain consistency.
 1. Read **MASTER_SPECIFICATION.md**
 2. Read **CHANGELOG.md**
 3. Review related files
-4. Implement requested task
-5. Update documentation
-6. Update **CHANGELOG.md**
-7. Produce deliverables
-
----
-
-## Deliverables
-
-Whenever applicable, produce actual files:
-
-- Arduino Source Code
-- ESP32 Firmware
-- KiCad Project
-- PCB Gerber Files
-- Bill of Materials (BOM)
-- OpenSCAD Models
-- STL Files
-- STEP Files
-- CSV Data Files
-- Calibration Files
-- Documentation
-- Diagrams
-
-Avoid delivering explanation only.
+4. Implement the requested task
+5. Test where applicable
+6. Update affected documentation
+7. Update **CHANGELOG.md** for approved project changes
+8. Produce deliverables
 
 ---
 
 ## Versioning
 
-Every deliverable should include a version number:
+Versioning is an operational convention. Current release-stage labels are:
 
 - **v0.1** - Concept Design
 - **v0.5** - Prototype
 - **v1.0** - Production Release
 
-For complete versioning standards, see:
-
-> [MASTER_SPECIFICATION.md - Versioning Standard](./MASTER_SPECIFICATION.md#versioning-standard)
+Do not treat this convention as a product specification.
 
 ---
 
@@ -243,41 +200,30 @@ Documentation should be:
 - Reproducible
 - Technically accurate
 - Manufacturing-oriented
+- Explicit about Unknown values
 
 Avoid unnecessary verbosity.
 
 ---
 
-## Error Handling
-
-If information cannot be verified:
-
-- State that it is **Unknown**
-- Explain why
-- Suggest how to verify it
-
-Never fabricate technical information.
-
----
-
 ## Quality Checklist
 
-Before completing any task, verify:
+Before completing a task, verify:
 
-- □ MASTER_SPECIFICATION.md read and understood
-- □ Specifications followed
-- □ No guessed values
-- □ Files remain consistent
-- □ Documentation updated
-- □ Version updated
-- □ CHANGELOG updated
-- □ Manufacturable output
-- □ Deliverables are actual files
+- [ ] MASTER_SPECIFICATION.md read and understood
+- [ ] CHANGELOG.md read
+- [ ] Specifications followed
+- [ ] No guessed values
+- [ ] Files remain internally consistent
+- [ ] Relevant documentation updated
+- [ ] CHANGELOG updated when required
+- [ ] Deliverables are actual files
+- [ ] Output is clearly marked Concept Design when applicable
 
 ---
 
 ## Final Objective
 
-The final objective is to create a practical, portable automotive paint measurement system that can be reproduced by third parties using the published manufacturing data.
+Create a practical, portable automotive paint measurement system that can be reproduced by third parties using the published manufacturing data.
 
 Every contribution should move the project closer to that objective.
