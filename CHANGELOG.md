@@ -15,12 +15,15 @@ All notable changes for REAL Color Mate.
 - Recorded currently verifiable component-selection information without inventing missing rationale, prices, availability, dimensions, or specifications.
 - Updated `AGENTS.md` to Version 2.1 and aligned its operating rules with the current v2.1 specification.
 - Updated `.github/copilot-instructions.md` to Version 2.1 and removed stale references to sections that no longer exist in `MASTER_SPECIFICATION.md`.
-- Moved repository-structure guidance out of the formal specification and into operational documentation (`AGENTS.md`).
+- Moved repository-structure guidance out of the formal specification and into operational documentation.
 - Clarified the separation between `MASTER_SPECIFICATION.md`, `CHANGELOG.md`, `ROADMAP.md`, `IDEA.md`, `docs/design_history.md`, and `docs/component_selection.md`.
+- Expanded `ROADMAP.md` into a staged development plan based on the currently documented requirements, BOM, and verification items.
+- Expanded `IDEA.md` into a controlled idea/proposal register without inventing historical ideas.
+- Confirmed `docs/repository.md` as the operational repository-layout reference and linked it from `README.md`.
 
 #### Reason
 
-The v2.1 documentation structure had several stale cross-references and overlapping responsibilities. In particular, AI instruction files referenced `MASTER_SPECIFICATION.md#repository-structure` and versioning sections that were no longer present. The documentation was synchronized without changing the formal hardware, optical, or software requirements.
+The v2.1 documentation structure had several stale cross-references and overlapping responsibilities. The roadmap and idea documents were also only placeholders, which made the next development step unclear. The documents were expanded while preserving the rule that formal requirements belong only in `MASTER_SPECIFICATION.md`.
 
 #### Verification Policy
 
@@ -58,38 +61,28 @@ Unknown or unverified values remain explicitly marked `Unknown`. No physical dim
 
 #### Changed
 
-- **AGENTS.md**: Refactored to remove duplicated technical specifications
-  - Replaced technical specifications with references to MASTER_SPECIFICATION.md
-  - Reorganized file structure for clarity
-  - Kept only operational guidance and AI collaboration rules
-  - Status: Specifications preserved, operational guidance clarified
-
-- **.github/copilot-instructions.md**: Updated reading order and references
-  - Changed reading order to: MASTER_SPECIFICATION.md → CHANGELOG.md → AGENTS.md
-  - Added "Single Source of Truth" emphasis for MASTER_SPECIFICATION.md
-  - Updated all specification references to point to MASTER_SPECIFICATION.md
-  - Version bumped to 2.0
-  - Status: Reading order clarified, references verified
+- **AGENTS.md**: Refactored to remove duplicated technical specifications.
+- **.github/copilot-instructions.md**: Updated reading order and references.
+- Established `MASTER_SPECIFICATION.md` as the Single Source of Truth.
+- Separated operational guidance from formal specifications.
 
 #### Verified
 
-- MASTER_SPECIFICATION.md remains unchanged (Single Source of Truth)
-- All project specifications preserved
-- No hardware specifications modified
-- No software specifications modified
-- No optical specifications modified
-- No calibration specifications modified
-- Documentation is internally consistent
-- No broken internal links
-- Repository structure unchanged
+- Project specifications were preserved.
+- No hardware specifications were modified.
+- No software specifications were modified.
+- No optical specifications were modified.
+- No calibration specifications were modified.
 
 ### Rationale
 
-This refactoring improves separation of responsibilities:
-- MASTER_SPECIFICATION.md: Official specifications (authority)
-- AGENTS.md: Operational guidance and AI collaboration rules
-- .github/copilot-instructions.md: Copilot-specific workflow instructions
+This refactoring established the documentation separation used by Version 2.x:
 
-The refactoring maintains all project decisions while clarifying documentation structure.
-
----
+- `MASTER_SPECIFICATION.md`: Official specifications
+- `AGENTS.md`: Operational guidance and AI collaboration rules
+- `.github/copilot-instructions.md`: Copilot-specific workflow instructions
+- `CHANGELOG.md`: Approved change history
+- `ROADMAP.md`: Planned development work
+- `IDEA.md`: Future ideas and proposals
+- `docs/design_history.md`: Design rationale and decision history
+- `docs/component_selection.md`: Component selection history and verification
