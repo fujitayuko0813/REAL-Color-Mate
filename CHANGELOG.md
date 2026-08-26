@@ -16,14 +16,15 @@ All notable changes for REAL Color Mate.
 - Updated `AGENTS.md` to Version 2.1 and aligned its operating rules with the current v2.1 specification.
 - Updated `.github/copilot-instructions.md` to Version 2.1 and removed stale references to sections that no longer exist in `MASTER_SPECIFICATION.md`.
 - Moved repository-structure guidance out of the formal specification and into operational documentation.
-- Clarified the separation between `MASTER_SPECIFICATION.md`, `CHANGELOG.md`, `ROADMAP.md`, `IDEA.md`, `docs/design_history.md`, and `docs/component_selection.md`.
+- Confirmed `docs/repository.md` as the operational repository-layout reference.
 - Expanded `ROADMAP.md` into a staged development plan based on the currently documented requirements, BOM, and verification items.
 - Expanded `IDEA.md` into a controlled idea/proposal register without inventing historical ideas.
-- Confirmed `docs/repository.md` as the operational repository-layout reference and linked it from `README.md`.
+- Finalized `README.md` as the project navigation entry point.
+- Added `docs/README.md` as the documentation index.
 
 #### Reason
 
-The v2.1 documentation structure had several stale cross-references and overlapping responsibilities. The roadmap and idea documents were also only placeholders, which made the next development step unclear. The documents were expanded while preserving the rule that formal requirements belong only in `MASTER_SPECIFICATION.md`.
+The v2.1 documentation structure had stale cross-references and overlapping responsibilities. The roadmap and idea documents were also only placeholders, which made the next development step unclear. The documentation has now been organized so that formal requirements, operational rules, plans, ideas, design rationale, component selection, and repository navigation have distinct responsibilities.
 
 #### Verification Policy
 
