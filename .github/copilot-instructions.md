@@ -71,11 +71,9 @@ Prioritize:
 
 ## Repository Structure
 
-Repository layout is documented separately because it is an operational/documentation concern rather than a formal product specification.
+Repository layout is an operational/documentation concern rather than a formal product specification.
 
-See:
-
-> [docs/repository.md](../docs/repository.md)
+The current layout is documented in `AGENTS.md` under **Repository Structure**.
 
 Do not reference a nonexistent `Repository Structure` section in `MASTER_SPECIFICATION.md`.
 
@@ -89,7 +87,7 @@ For authoritative hardware and software information, always use:
 >
 > [MASTER_SPECIFICATION.md — Software Stack](../MASTER_SPECIFICATION.md#software-stack)
 
-Do not maintain an independent hardware specification in this file.
+Do not maintain an independent formal hardware specification in this file.
 
 ### Current Hardware Summary
 
@@ -117,7 +115,6 @@ For complete and authoritative details, use `MASTER_SPECIFICATION.md`.
 | `IDEA.md` | Future ideas/proposals |
 | `docs/design_history.md` | Design rationale and decision history |
 | `docs/component_selection.md` | Component selection history and verification status |
-| `docs/repository.md` | Repository layout and file responsibilities |
 | `AGENTS.md` | General AI/repository operating rules |
 | `.github/copilot-instructions.md` | Copilot-specific operating rules |
 
