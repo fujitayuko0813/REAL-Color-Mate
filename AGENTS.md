@@ -118,11 +118,27 @@ For complete specifications, see:
 
 Repository layout is an operational/documentation concern, not a formal product specification.
 
-See:
+```text
+REAL-Color-Mate/
+├── hardware/          # KiCad schematics and PCB layouts
+├── software/          # ESP32 firmware
+├── mechanical/        # OpenSCAD and mechanical design files
+├── calibration/       # Calibration procedures and calibration data
+├── docs/              # Design rationale, component selection, technical documentation
+├── manufacturing/     # Manufacturing instructions and production data
+├── tools/             # Development utilities
+├── BOM.md             # Parts list and procurement
+├── MASTER_SPECIFICATION.md
+├── README.md
+├── ROADMAP.md
+├── IDEA.md
+├── CHANGELOG.md
+├── AGENTS.md
+└── .github/
+    └── copilot-instructions.md
+```
 
-> [docs/repository.md](./docs/repository.md)
-
-Keep repository-layout references synchronized when directories or top-level documents change.
+When the repository structure changes, update this section and related navigation links. Do not treat a repository-layout change as a product specification change unless it affects a requirement explicitly defined in MASTER_SPECIFICATION.md.
 
 ---
 
