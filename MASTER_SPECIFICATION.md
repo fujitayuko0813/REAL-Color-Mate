@@ -1,6 +1,6 @@
 # REAL Color Mate - Master Specification v2.1
 
-**Last Updated:** 2026-08-19  
+**Last Updated:** 2026-08-27  
 **Status:** Active Development  
 **Version:** v2.1
 
@@ -160,56 +160,110 @@ No AI collaborator may change a decided specification without explicit project-o
 
 | Date | Version | Notes |
 |------|---------|-------|
+| 2026-08-27 | v2.1 | Added verified physical measurements for the actual Makerbase MKS MINI12864 V3 module and linked the detailed measurement record. |
 | 2026-08-19 | v2.1 | Synchronized MCU and purchased hardware with approved BOM; removed unverified AS7341 channel count; normalized LED driver and LED part information |
 | 2026-08-04 | v2.0 | Refactored: Separated specifications from operational rules |
 | 2026-08-03 | v2.0 | Initial creation: reorganized from AGENTS.md |
 
 ---
 
-## Display Module — Measurement Record
+## Display Module — Verified Measurement Record
 
-- **Module name:** Makerbase MKS MINI12864 V3
+**Module:** Makerbase MKS MINI12864 V3.0  
+**Measurement status:** Actual hardware measured  
+**Unit:** mm  
+**Measurement method:** Digital caliper  
+**Detailed record:** [docs/hardware/MKS_MINI12864_V3_MEASURED.md](./docs/hardware/MKS_MINI12864_V3_MEASURED.md)
 
-- **Display controller:** Unknown (do not invent controller information here; record verified controller when available)
+### Encoder / Rotary Knob
 
-- **Measured dimensions:**
-  - Mounting hole dimensions:
-    - Hole diameter: Unknown
-    - Center-to-center horizontal spacing: Unknown
-    - Center-to-center vertical spacing: Unknown
-    - Mounting hole pattern: Unknown
-  - LCD dimensions:
-    - Active area (W x H): Unknown
-    - Overall module W x H: Unknown
-    - Bezel thickness / visible border: Unknown
-  - Encoder dimensions:
-    - Shaft diameter: Unknown
-    - Body diameter: Unknown
-    - Shaft length (from front face): Unknown
-  - Reset button dimensions:
-    - Button cap diameter: Unknown
-    - Button travel: Unknown
-    - Button mounting footprint: Unknown
-  - SD card slot dimensions:
-    - Slot opening W x H: Unknown
-    - Slot depth: Unknown
-    - Card insertion orientation: Unknown
-  - Rear-side component height:
-    - Maximum component height above PCB (rear side): Unknown
+| Item | Measured value | Notes |
+|---|---:|---|
+| Shaft diameter | **5.98 mm** | Actual shaft diameter |
+| Shaft protrusion, PCB surface to shaft tip | **22.50 mm** | PCB front surface is the reference |
+| Threaded section diameter at mounting-nut area | **6.80 mm** | Mounting nut was not available during measurement |
+| Threaded section length | **5.10 mm** | |
+| Knob outside diameter | **25.00 mm** | |
+| Knob height, PCB surface to knob top | **24.50 mm** | PCB front surface is the reference |
 
-- **Measurement status:** Values marked **Unknown** have not yet been verified from the actual purchased hardware and must be measured before being used for production mechanical design.
+### LCD
 
-### Mechanical Design Policy (Display & Enclosure)
+| Item | Measured value | Notes |
+|---|---:|---|
+| LCD glass width | **58.24 mm** | Overall glass dimension |
+| LCD glass height | **39.00 mm** | Overall glass dimension |
+| Active display area width | **53.00 mm** | |
+| Active display area height | **28.68 mm** | |
+| LCD protrusion, PCB surface to glass surface | **6.11 mm** | PCB front surface is the reference |
+
+**Initial enclosure design opening:** 58.84 × 39.60 mm, based on approximately +0.30 mm clearance per side. This is a derived CAD design value, not a physical measurement.
+
+### Reset Button
+
+| Item | Measured value | Notes |
+|---|---:|---|
+| Button diameter | **3.40 mm** | |
+| Button height, PCB surface to button top | **6.22 mm** | PCB front surface is the reference |
+| Button center X from left PCB edge | **97.44 mm** | Left-edge reference |
+| Button center Y from bottom PCB edge | **9.85 mm** | Bottom-edge reference |
+
+### SD Card Slot
+
+| Item | Measured value | Notes |
+|---|---:|---|
+| Card protrusion when fully inserted | **5.50 mm** | |
+| Slot opening width | **28.70 mm** | |
+| Slot opening height | **2.70 mm** | |
+| Approximate card replacement space | **30.80 mm** | Practical design reference; not a precision tolerance |
+
+### Rear-side Components
+
+| Item | Measured value | Notes |
+|---|---:|---|
+| Maximum rear-side component height | **9.07 mm** | Rear-side reference |
+| Connector height | **9.07 mm** | Rear-side reference |
+| Pin-header length, PCB surface to pin tip | **20.50 mm** | Do not treat as component-body height |
+
+### Spacer / PCB underside
+
+The following are **not yet measured / not yet decided**:
+- PCB underside to support surface / spacer height: **未測定**
+- Component height around mounting holes on PCB underside: **未測定**
+- Recommended spacer height: **未決定**
+
+### Previously recorded board reference dimensions
+
+These values were recorded earlier in the project and are **reference values, not newly measured values from this measurement session**:
+
+- PCB overall size: **106.60 × 47.00 mm**
+- Mounting holes: **4 × Ø3.20 mm**
+- Horizontal mounting-hole center spacing: **93.00 mm**
+- Vertical mounting-hole center spacing: **41.00 mm**
+- Left edge to left hole center: **6.60 mm**
+- Right edge to right hole center: **7.00 mm**
+- Bottom edge to lower hole center: **3.00 mm**
+- Top edge to upper hole center: **3.00 mm**
+- PCB thickness: **1.60 mm** (reference)
+
+### Approved Mechanical Design Policy
 
 - Mechanical parts shall prioritize ease of assembly over tight cosmetic tolerances.
 - Use practical clearances suitable for FDM 3D printing.
-- LCD window shall include approximately 0.3 mm clearance per side.
-- PCB shall have approximately 0.5 mm enclosure clearance.
+- A small visible gap is acceptable.
+- PCB-to-enclosure clearance: approximately **0.5 mm** as the initial design rule.
+- LCD window clearance: approximately **0.30 mm per side**.
 - Encoder shall rotate freely without touching the enclosure.
 - SD card shall be removable without disassembling the enclosure.
-- Optical components (sensor, LED ring, measurement hood) are excluded from this policy and shall be designed with high precision.
+- Reset button shall remain operable after enclosure assembly.
+- Optical components (AS7341, LED ring, measurement hood and optical chamber) are excluded from this relaxed clearance policy and require precision mechanical design.
 
-### Notes and Guidance
+### Measurement Reference Rules
 
-- Do not change hardware selection or optical specifications without project-owner approval.
-- Dimensions and physical characteristics must be measured and recorded; if measurements are unknown, explicitly mark as **Unknown** until verified.
+- Front-side component heights use the **PCB front surface as the zero reference**.
+- Reset button height is **PCB surface → button top**.
+- Encoder knob height is **PCB surface → knob top**.
+- Encoder shaft protrusion is **PCB surface → shaft tip**.
+- LCD protrusion is **PCB surface → glass surface**.
+- Rear-side measurements must use the specified PCB rear reference plane consistently.
+- Measured values must not be replaced by catalog values unless explicitly marked as reference/catalog data.
+- Unmeasured dimensions must not be inferred.
