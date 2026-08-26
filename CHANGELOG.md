@@ -4,6 +4,30 @@ All notable changes for REAL Color Mate.
 
 ---
 
+## [2.1] - 2026-08-26
+
+### Documentation Structure Synchronization
+
+#### Changed
+
+- Completed `docs/component_selection.md` as the component-selection history and verification record.
+- Added explicit `Selected`, `Purchased`, `Candidate`, `Rejected`, and `Unknown` status definitions to the component-selection document.
+- Recorded currently verifiable component-selection information without inventing missing rationale, prices, availability, dimensions, or specifications.
+- Updated `AGENTS.md` to Version 2.1 and aligned its operating rules with the current v2.1 specification.
+- Updated `.github/copilot-instructions.md` to Version 2.1 and removed stale references to sections that no longer exist in `MASTER_SPECIFICATION.md`.
+- Moved repository-structure guidance out of the formal specification and into operational documentation (`AGENTS.md`).
+- Clarified the separation between `MASTER_SPECIFICATION.md`, `CHANGELOG.md`, `ROADMAP.md`, `IDEA.md`, `docs/design_history.md`, and `docs/component_selection.md`.
+
+#### Reason
+
+The v2.1 documentation structure had several stale cross-references and overlapping responsibilities. In particular, AI instruction files referenced `MASTER_SPECIFICATION.md#repository-structure` and versioning sections that were no longer present. The documentation was synchronized without changing the formal hardware, optical, or software requirements.
+
+#### Verification Policy
+
+Unknown or unverified values remain explicitly marked `Unknown`. No physical dimensions, calibration values, electrical characteristics, or component performance specifications were invented during this documentation synchronization.
+
+---
+
 ## [2.1] - 2026-08-19
 
 ### Specification Synchronization
