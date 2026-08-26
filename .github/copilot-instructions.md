@@ -1,301 +1,183 @@
 # GitHub Copilot Instructions
 
-**Version:** 2.0  
-**Last Updated:** 2026-08-04
+**Version:** 2.1  
+**Last Updated:** 2026-08-26
 
 ---
 
-## 🎯 Purpose
+## Purpose
 
-This file defines how GitHub Copilot should interact with the REAL Color Mate project.
+This file defines how GitHub Copilot should work with the REAL Color Mate repository.
 
-All Copilot work must follow these instructions **before starting any task**.
+It is an operational instruction file, not a formal project specification.
 
----
-
-## 📖 Required Reading Order
-
-**BEFORE STARTING ANY WORK, READ IN THIS ORDER:**
-
-1. **[MASTER_SPECIFICATION.md](../../MASTER_SPECIFICATION.md)**
-   - **MASTER_SPECIFICATION.md is the Single Source of Truth**
-   - Official project specifications
-   - Hardware and software stack details
-   - Design stages and versioning rules
-   - Component verification rules
-
-2. **[CHANGELOG.md](../../CHANGELOG.md)**
-   - History of approved changes
-   - Previous decisions and their context
-
-3. **[AGENTS.md](../../AGENTS.md)**
-   - AI development guide
-   - Development rules and principles
-   - AI collaboration guidelines
-   - Workflow procedures
-
-4. **Related documentation** (if applicable)
-   - Design documents in `docs/`
-   - Component research in existing files
+The formal specification is [MASTER_SPECIFICATION.md](../MASTER_SPECIFICATION.md).
 
 ---
 
-## ✅ Core Copilot Responsibilities
+## Required Reading Order
 
-GitHub Copilot is responsible for:
+Before starting work, read:
 
-- **Implementation** - Writing code and configurations
-- **Code Completion** - Generating code snippets
-- **Refactoring** - Improving existing code structure
-- **Unit Tests** - Writing and maintaining test suites
-- **Code Review** - Identifying potential issues
-
-**Copilot is NOT responsible for:**
-
-- Architecture decisions (handled by ChatGPT)
-- Mathematics and algorithms (handled by Gemini)
-- Project specifications (read-only from MASTER_SPECIFICATION.md)
-- Design decisions without explicit user approval
+1. [MASTER_SPECIFICATION.md](../MASTER_SPECIFICATION.md) — formal specification and Single Source of Truth
+2. [CHANGELOG.md](../CHANGELOG.md) — approved change history
+3. [AGENTS.md](../AGENTS.md) — repository and AI operating rules
+4. Related documentation under `docs/` when applicable
 
 ---
 
-## 🛑 Critical Rules - NEVER VIOLATE
+## Core Responsibilities
+
+GitHub Copilot is primarily responsible for:
+
+- Implementation
+- Code completion
+- Refactoring
+- Unit tests
+- Code review
+- Repository documentation maintenance when explicitly requested
+
+Copilot must not independently redefine project requirements or make unapproved architecture decisions.
+
+---
+
+## Critical Rules
 
 ### Specifications
 
-- ❌ Do NOT modify MASTER_SPECIFICATION.md without explicit user approval
-- ❌ Do NOT guess specifications
-- ❌ Do NOT invent dimensions
-- ❌ Do NOT invent electrical characteristics
-- ❌ Do NOT invent calibration values
-- ✅ If information is unavailable, state: **Unknown**
+- Do not modify `MASTER_SPECIFICATION.md` unless the project owner explicitly approves the specification change.
+- Do not guess specifications.
+- Do not invent dimensions, electrical characteristics, calibration values, or component performance.
+- If information cannot be verified, write **Unknown**.
 
-### Code and Files
+### Files and Documentation
 
-- ✅ Always produce actual deliverables (code, configs, tests)
-- ✅ Include version numbers in deliverables
-- ✅ Keep documentation synchronized with code changes
-- ✅ Clearly distinguish verified information from assumptions
-- ❌ Do NOT replace existing work without explanation
-- ❌ Do NOT remove functionality without approval
+- Preserve existing work unless a requested change requires modification.
+- Keep related documentation internally consistent.
+- Update `CHANGELOG.md` when an approved project/document change is made.
+- Clearly distinguish verified information, assumptions, and Concept Design material.
 
 ### Design
 
-- ✅ Mark concept designs as "Concept Design" clearly
-- ✅ Prioritize: Practicality → Manufacturability → Maintainability
-- ✅ Ensure designs are manufacturable with common services (JLCPCB, PCBWay, etc.)
-- ❌ Do NOT use obsolete or unavailable components when practical alternatives exist
+Prioritize:
+
+1. Practicality
+2. Manufacturability
+3. Maintainability
+4. Repeatability
+5. Verified information
 
 ---
 
-## 📋 Pre-Work Checklist
+## Repository Structure
 
-Before completing ANY task, verify:
+Repository layout is documented separately because it is an operational/documentation concern rather than a formal product specification.
 
-- [ ] Read MASTER_SPECIFICATION.md (Single Source of Truth)
-- [ ] Read CHANGELOG.md
-- [ ] Read AGENTS.md
-- [ ] Related files reviewed (if applicable)
-- [ ] No guessed specifications
-- [ ] No invented values
-- [ ] Specifications followed
-- [ ] Files remain consistent
-- [ ] Documentation updated
-- [ ] Version numbers included
-- [ ] CHANGELOG.md updated
-- [ ] Deliverables are actual files (not explanations only)
+See:
+
+> [docs/repository.md](../docs/repository.md)
+
+Do not reference a nonexistent `Repository Structure` section in `MASTER_SPECIFICATION.md`.
 
 ---
 
-## 🔄 Workflow for Tasks
+## Hardware and Software Reference
 
-1. **Read** the required documentation files (in order above)
-2. **Review** related project files
-3. **Implement** the requested task
-4. **Test** the implementation (if applicable)
-5. **Update** documentation to match changes
-6. **Verify** all files remain internally consistent
-7. **Update** [CHANGELOG.md](../../CHANGELOG.md) with the change
-8. **Deliver** actual files, not explanations
+For authoritative hardware and software information, always use:
 
----
+> [MASTER_SPECIFICATION.md — Hardware Specification](../MASTER_SPECIFICATION.md#hardware-specification)
+>
+> [MASTER_SPECIFICATION.md — Software Stack](../MASTER_SPECIFICATION.md#software-stack)
 
-## 📁 Repository Structure Reference
+Do not maintain an independent hardware specification in this file.
 
-For the official repository structure, see:
+### Current Hardware Summary
 
-> [MASTER_SPECIFICATION.md - Repository Structure](../../MASTER_SPECIFICATION.md#repository-structure)
-
-Quick reference:
-
-```
-REAL-Color-Mate/
-├── .github/
-│   └── copilot-instructions.md    ← You are here
-├── hardware/                       # KiCad PCB designs
-├── software/                       # ESP32 firmware (Arduino IDE)
-├── mechanical/                     # OpenSCAD / STEP / STL files
-├── calibration/                    # Calibration data and procedures
-├── docs/                           # Design documents and research
-├── manufacturing/                  # Manufacturing instructions
-├── tools/                          # Development utilities
-├── BOM.md                         # Bill of materials
-├── MASTER_SPECIFICATION.md        # 🔴 Official specs (Single Source of Truth)
-├── AGENTS.md                      # AI development guide
-├── CHANGELOG.md                   # Version history
-├── IDEA.md                        # Future ideas and candidates
-├── ROADMAP.md                     # Development roadmap
-├── README.md                      # Project overview
-└── LICENSE                        # MIT License
-```
-
----
-
-## 🛠️ Hardware Platform (Reference)
-
-For complete hardware specifications, see:
-
-> [MASTER_SPECIFICATION.md - Hardware Specification](../../MASTER_SPECIFICATION.md#hardware-specification)
-
-Quick reference:
-
-| Component | Value | Status |
-|-----------|-------|--------|
-| Microcontroller | ESP32-WROOM-32 | Decided |
+| Component | Current documented value | Status |
+|---|---|---|
+| Microcontroller | ESP32-S3 DevKitC-1 N16R8 | Decided |
 | Color Sensor | Adafruit AS7341 | Decided |
 | LED | Cree XP-G4 | Decided |
-| LED Driver | STMicroelectronics ALED8102 | Decided |
+| LED Driver | STMicroelectronics ALED8102SXTTR | Decided |
+| Display / UI | Makerbase MKS MINI12864 V3 | Decided |
 | Power | 5V | Decided |
 | Storage | microSD Card | Decided |
 
----
-
-## 💻 Software Stack (Reference)
-
-For complete software specifications, see:
-
-> [MASTER_SPECIFICATION.md - Software Stack](../../MASTER_SPECIFICATION.md#software-stack)
-
-Quick reference:
-
-| Component | Tool | Status |
-|-----------|------|--------|
-| IDE | Arduino IDE | Decided |
-| Framework | ESP32 Arduino Framework | Decided |
-| PCB Design | KiCad | Decided |
-| 3D Design | OpenSCAD | Decided |
-| Data Format | CSV | Decided |
-| Version Control | Git / GitHub | Decided |
+For complete and authoritative details, use `MASTER_SPECIFICATION.md`.
 
 ---
 
-## 🎓 Design Stages
+## Documentation Responsibilities
 
-For complete design stage definitions, see:
-
-> [MASTER_SPECIFICATION.md - Design Stages](../../MASTER_SPECIFICATION.md#design-stages)
-
-### Concept Design
-- Estimated dimensions allowed
-- Placeholder models allowed
-- Experimental ideas allowed
-- **MUST be clearly marked as "Concept Design"**
-
-### Production Design
-- Measured dimensions only
-- Verified components only
-- Manufacturing-ready data
-- Complete documentation
-- Ready for JLCPCB, PCBWay, or commercial services
-
-**Never confuse these two stages.**
+| File | Responsibility |
+|---|---|
+| `MASTER_SPECIFICATION.md` | Formal specifications only |
+| `CHANGELOG.md` | Approved changes and history |
+| `ROADMAP.md` | Planned work |
+| `IDEA.md` | Future ideas/proposals |
+| `docs/design_history.md` | Design rationale and decision history |
+| `docs/component_selection.md` | Component selection history and verification status |
+| `docs/repository.md` | Repository layout and file responsibilities |
+| `AGENTS.md` | General AI/repository operating rules |
+| `.github/copilot-instructions.md` | Copilot-specific operating rules |
 
 ---
 
-## 📊 Versioning Standard
+## Workflow
 
-For complete versioning standards, see:
-
-> [MASTER_SPECIFICATION.md - Versioning Standard](../../MASTER_SPECIFICATION.md#versioning-standard)
-
-Quick reference:
-
-| Version | Stage | Use Case |
-|---------|-------|----------|
-| v0.1 | Concept | Initial prototype concept |
-| v0.5 | Prototype | Working prototype with testing |
-| v1.0 | Production | Manufacturing-ready release |
-
-Always include version numbers in deliverables.
+1. Read the required documentation in the order above.
+2. Review relevant existing files.
+3. Implement only the requested task.
+4. Test where applicable.
+5. Verify internal consistency.
+6. Update affected documentation.
+7. Update `CHANGELOG.md` when the change is approved and material.
+8. Report changed files, verification results, and any remaining Unknown items.
 
 ---
 
-## 🤝 AI Collaboration
+## Error Handling
 
-This project uses multiple AI assistants for different specialties:
+If information cannot be verified:
 
-| Assistant | Responsibility |
-|-----------|-----------------|
-| **GitHub Copilot** (You) | Implementation, Code Completion, Refactoring, Unit Tests, Code Review |
-| **ChatGPT** | Architecture, Documentation, OpenSCAD, Firmware Design, Project Management |
-| **Google Gemini** | Mathematics, Color Science, Algorithm Review, Data Analysis |
-
-**All assistants must:**
-- Read MASTER_SPECIFICATION.md first
-- Respect previous work
-- Maintain consistency
-- Follow the same rules
+1. State **Unknown**.
+2. Explain why it is unknown.
+3. Suggest how it can be verified when useful.
+4. Never fabricate technical information.
 
 ---
 
-## ❓ Error Handling
+## Quality Gate
 
-**If you cannot verify information:**
+Before completing a task, verify:
 
-1. State clearly: **Unknown**
-2. Explain why it's unknown
-3. Suggest how to verify it
-4. **Never fabricate technical information**
-
-Example:
-```
-Unknown: The exact calibration offset for the AS7341 sensor in this optical chamber.
-
-Why: Calibration data requires physical testing with this specific configuration.
-
-Suggest: Run calibration procedure with standard color references and record results.
-```
+- [ ] `MASTER_SPECIFICATION.md` read and followed
+- [ ] `CHANGELOG.md` read
+- [ ] `AGENTS.md` read
+- [ ] No guessed or invented technical values
+- [ ] Related files remain internally consistent
+- [ ] Documentation updated where required
+- [ ] `CHANGELOG.md` updated when required
+- [ ] Deliverables are actual files
+- [ ] Concept Design is clearly marked when applicable
 
 ---
 
-## ✨ Quality Gate
+## AI Collaboration
 
-**Your work is complete ONLY when ALL of these are true:**
+This project uses multiple AI assistants:
 
-- ✅ MASTER_SPECIFICATION.md read and understood (Single Source of Truth)
-- ✅ CHANGELOG.md read
-- ✅ Specifications followed exactly
-- ✅ No guessed or invented values
-- ✅ All files remain internally consistent
-- ✅ Documentation updated to reflect changes
-- ✅ Version numbers included
-- ✅ CHANGELOG.md updated
-- ✅ Deliverables are actual files (code, configs, CAD files, etc.)
-- ✅ Output is manufacturing-ready (or clearly marked as Concept Design)
+| Assistant | Primary role |
+|---|---|
+| GitHub Copilot | Implementation, code, refactoring, tests, code review |
+| ChatGPT | Architecture, documentation, OpenSCAD, firmware design, project management |
+| Google Gemini | Mathematics, color science, algorithm review, data analysis |
 
----
+These are workflow roles, not authority over project specifications.
 
-## 📞 Questions?
-
-If instructions are unclear or conflicting:
-
-1. Ask the user for clarification
-2. Reference the specific instruction file and line
-3. Explain why the instruction is ambiguous
-4. Suggest how to resolve it
+All assistants must follow `MASTER_SPECIFICATION.md`.
 
 ---
 
-**Last Updated:** 2026-08-04  
-**Authority:** MASTER_SPECIFICATION.md  
-**Reading Order:** MASTER_SPECIFICATION.md → CHANGELOG.md → AGENTS.md
+**Authority:** `MASTER_SPECIFICATION.md`  
+**Reading Order:** `MASTER_SPECIFICATION.md` → `CHANGELOG.md` → `AGENTS.md`
